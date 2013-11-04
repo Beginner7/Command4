@@ -13,12 +13,15 @@ namespace ChessService {
 
     public class WebApiApplication : System.Web.HttpApplication {
         protected void Application_Start() {
+            ConfigureApi(GlobalConfiguration.Configuration);
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        void ConfigureApi(HttpConfiguration config) {
+            config.DependencyResolver = new RepositoryContainer();
         }
     }
 }
