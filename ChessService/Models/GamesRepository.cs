@@ -21,13 +21,13 @@ namespace ChessService.Models {
             return gameRequest;
         }
 
-        public string RegisterMove(Guid gameId, Move move) {
+        public string RegisterMove(GameMove move) {
             GameState gameState;
-            if(!games.TryGetValue(gameId, out gameState)) {
+            if(!games.TryGetValue(move.GameId, out gameState)) {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             gameState.RegisterMove(move);
-            return gameState.Notation;
+            return gameState.GameStateNotation;
         }
 
         public IEnumerable<GameState> GetGames() {

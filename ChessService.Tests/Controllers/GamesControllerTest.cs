@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessService;
 using ChessService.Controllers;
 using ChessService.Models;
+using Common;
 
 namespace ChessService.Tests.Controllers {
     [TestClass]
@@ -23,16 +24,16 @@ namespace ChessService.Tests.Controllers {
 
         [TestMethod]
         public void Get() {
+            // Arrange
             GamesController controller = new GamesController(repository);
 
             // Act
-
-            IEnumerable<string> result = controller.Get();
+            IEnumerable<GameState> result = controller.Get();
 
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());
-            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", result.ElementAt(0));
+            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", result.ElementAt(0).GameStateNotation);
         }
 
         [TestMethod]
@@ -41,10 +42,10 @@ namespace ChessService.Tests.Controllers {
             GamesController controller = new GamesController(repository);
 
             // Act
-            string result = controller.Get(gameId);
+            GameState result = controller.Get(gameId);
 
             // Assert
-            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", result);
+            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", result.GameStateNotation);
         }
 
         [TestMethod]
@@ -53,7 +54,7 @@ namespace ChessService.Tests.Controllers {
             GamesController controller = new GamesController(repository);
 
             // Act
-            controller.Post(gameId, "....");
+            controller.Post(new GameMove() { GameId = gameId, MoveNotation = "..." });
 
             // Assert
         }
