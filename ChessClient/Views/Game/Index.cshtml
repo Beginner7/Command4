@@ -1,0 +1,47 @@
+﻿@model ChessClient.Models.GameModels
+
+@{
+    ViewBag.Title = "Шахматы";
+}    
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+               
+            </hgroup>
+            <p>
+                
+            </p>
+        </div>
+    </section>
+
+}
+
+<ol class="round">
+    <li class="one">
+        <h5>Ввведите ход:</h5>
+       
+        @using (Html.BeginForm("Index","Game")){
+            @Html.TextBoxFor(x => x.move);
+            <input type="submit" value="Отправить">
+        }
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Result)) { 
+            <h5>Вы выбрали: @ViewBag.Result</h5>
+        }
+    </li>
+
+    <li class="two">
+        <h5>Add NuGet packages and jump-start your coding</h5>
+        NuGet makes it easy to install and update free libraries and tools.
+        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+    </li>
+
+    <li class="three">
+        <h5>Find Web Hosting</h5>
+        You can easily find a web hosting company that offers the right mix of features
+        and price for your applications.
+        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+    </li>
+</ol>
