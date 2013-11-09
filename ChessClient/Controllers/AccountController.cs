@@ -23,7 +23,7 @@ namespace ChessClient.Controllers {
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
+            
         //
         // POST: /Account/Login
 

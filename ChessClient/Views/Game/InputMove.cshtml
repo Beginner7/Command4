@@ -1,0 +1,13 @@
+﻿@model ChessClient.Models.GameModels
+@{
+    Layout = null;
+}  
+
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.From) && !string.IsNullOrWhiteSpace(ViewBag.To))
+{ 
+    <h5>Из: @ViewBag.From</h5>
+    <h5>В: @ViewBag.To</h5>  
+    <h5>В: @ViewBag.Show</h5>                  
+    <input type="button" value="Сделать ход" onclick="Makemove('@ViewBag.From    ','@ViewBag.To    ')">                       
+}

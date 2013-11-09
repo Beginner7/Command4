@@ -9,7 +9,18 @@ namespace ChessClient.Models
     {
         public string move { get; set; }
 
+
+        public string[] ConvertMove(string move){
+             string[] str= move.Split(new Char[] {' '});           
+             return str;
+        }
+
+
+        public bool MakeMove(string move) {   
+            return true;
+        }
         
+       
 
     }
 }

@@ -14,15 +14,36 @@ namespace ChessClient.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(GameModels gameModel)
+        public ActionResult Index(GameModels gameModel)                     
         {
-            ViewBag.Result = gameModel.move;
-            return View();
+            string[] move;
+
+            move = gameModel.ConvertMove(gameModel.move);
+            ViewBag.From = move[0];
+            ViewBag.To = move[1];
+
+
+            if (Request.IsAjaxRequest())
+            {
+                ViewBag.Show = "Частичное";
+                return PartialView();
+
+            }
+            else
+            {
+
+                ViewBag.Show = "1234";
+                return View();
+            }
+            
         }
+
+
 
 
 
