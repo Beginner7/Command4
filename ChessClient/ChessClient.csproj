@@ -258,6 +258,7 @@
     <Content Include="Images\kingBlack.png" />
     <Content Include="Images\kingWhite.png" />
     <Content Include="Images\kingWhite1.png" />
+    <Content Include="Images\knightBlack.png" />
     <Content Include="Images\knightWhite.png" />
     <Content Include="Images\pawnBlack.png" />
     <Content Include="Images\pawnWhite.png" />
