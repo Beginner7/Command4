@@ -6,6 +6,8 @@ function Makemove(moveFrom, moveTo) {
 };
 
 
+
+
 function MakeTable(divtable) {
     alert(divtable);
     $('#'+divtable).append('<table>');

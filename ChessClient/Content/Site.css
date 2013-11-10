@@ -760,7 +760,7 @@ tr.pager td {
     }
 
     .blackCell {
-        background-color: black;
+        background-color: saddlebrown ;
         padding: 0em 0em 0em 0em;
         height: 80px;
         width: 80px;
@@ -770,7 +770,7 @@ tr.pager td {
     }
 
     .whiteCell {
-        background-color: white;
+        background-color:sandybrown ;
         padding: 0em 0em 0em 0em;
         height: 80px;
         width: 80px;
@@ -789,6 +789,14 @@ tr.pager td {
         text-align:center;
         padding: 0em 0em 0em 0em;
     }
+
+    .MovesHistory {
+        border:solid;        
+        padding: 20px 20px  20px 20px;
+        width: 640px;    
+    }
+
+
 
 
 

@@ -29,9 +29,10 @@
 }
 <ol class="round">
     <li class="one">
-        <h5>Ввведите ход:</h5>
+        <div id="qwe"> 
+               <h5>Ввведите ход:</h5>
 
-       <div id="qwe"> 
+
         @using (Ajax.BeginForm(ajax)){       
         
 
@@ -45,8 +46,11 @@
          }
       
         }   
-        </div>                  
-        
+        </div>    
+        <div class="MovesHistory">
+            dfasdasd
+
+        </div>              
            <table class="tabledesk">
                <tr >
                    <td> </td>
@@ -62,26 +66,26 @@
                </tr>
                <tr>
                    <td class="positionY">8</td>
-                   <td id="a8" class="whiteCell"><img src="~/Images/rook.png"/></td>
-                   <td id="b8" class="blackCell"><img src="~/Images/knight.png"/></td>
-                   <td id="c8" class="whiteCell"><img src="~/Images/bishop.png" /></td>
-                   <td id="d8" class="blackCell"><img src="~/Images/queen.png" /></td>
-                   <td id="e8" class="whiteCell"><img src="~/Images/king.png" /></td>
-                   <td id="f8" class="blackCell"><img src="~/Images/bishop.png" /></td>
-                   <td id="g8" class="whiteCell"><img src="~/Images/knight.png"/></td>
-                   <td id="h8" class="blackCell"><img src="~/Images/rook.png"/></td>
+                   <td id="a8" class="whiteCell"><img src="~/Images/rookwhite.png"/></td>
+                   <td id="b8" class="blackCell"><img src="~/Images/knightwhite.png"/></td>
+                   <td id="c8" class="whiteCell"><img src="~/Images/bishopwhite.png" /></td>
+                   <td id="d8" class="blackCell"><img src="~/Images/queenwhite.png" /></td>
+                   <td id="e8" class="whiteCell"><img src="~/Images/kingwhite.png" /></td>
+                   <td id="f8" class="blackCell"><img src="~/Images/bishopwhite.png" /></td>
+                   <td id="g8" class="whiteCell"><img src="~/Images/knightwhite.png"/></td>
+                   <td id="h8" class="blackCell"><img src="~/Images/rookwhite.png"/></td>
                    <td class="positionY">8</td>
                </tr>
                <tr>
                    <td class="positionY">7</td>
-                   <td id="a7"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="b7"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="c7"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="d7"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="e7"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="f7"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="g7"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="h7"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
+                   <td id="a7"  class="blackCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="b7"  class="whiteCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="c7"  class="blackCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="d7"  class="whiteCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="e7"  class="blackCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="f7"  class="whiteCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="g7"  class="blackCell"><img src="~/Images/pawnwhite.png" /></td>
+                   <td id="h7"  class="whiteCell"><img src="~/Images/pawnwhite.png" /></td>
                    <td class="positionY">7</td>
                </tr>
                <tr>
@@ -134,26 +138,26 @@
                </tr>
                <tr>
                    <td class="positionY">2</td>
-                   <td id="a2"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="b2"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="c2"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="d2"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="e2"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="f2"  class="blackCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="g2"  class="whiteCell"><img src="~/Images/pawn.png" /></td>
-                   <td id="h2"  class="blackCell"><img src="~/Images/pawn.png" /></td>
+                   <td id="a2"  class="whiteCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="b2"  class="blackCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="c2"  class="whiteCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="d2"  class="blackCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="e2"  class="whiteCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="f2"  class="blackCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="g2"  class="whiteCell"><img src="~/Images/pawnblack.png" /></td>
+                   <td id="h2"  class="blackCell"><img src="~/Images/pawnblack.png" /></td>
                    <td class="positionY" >2</td>
                </tr>
                <tr>
                    <td class="positionY">1</td>
-                   <td id="a1"  class="blackCell"><img src="~/Images/rook.png" /></td>
-                   <td id="b1"  class="whiteCell"><img src="~/Images/knight.png" /></td>
-                   <td id="c1"  class="blackCell"><img src="~/Images/bishop.png" /></td>
-                   <td id="d1"  class="whiteCell"><img src="~/Images/queen.png" /></td>
-                   <td id="e1"  class="blackCell"><img src="~/Images/king.png" /></td>
-                   <td id="f1"  class="whiteCell"><img src="~/Images/bishop.png" /></td>
-                   <td id="g1"  class="blackCell"><img src="~/Images/knight.png" /></td>
-                   <td id="h1"  class="whiteCell"><img src="~/Images/rook.png" /></td>
+                   <td id="a1"  class="blackCell"><img src="~/Images/rookblack.png" /></td>
+                   <td id="b1"  class="whiteCell"><img src="~/Images/knightblack.png" /></td>
+                   <td id="c1"  class="blackCell"><img src="~/Images/bishopblack.png" /></td>
+                   <td id="d1"  class="whiteCell"><img src="~/Images/queenblack.png" /></td>
+                   <td id="e1"  class="blackCell"><img src="~/Images/kingblack.png" /></td>
+                   <td id="f1"  class="whiteCell"><img src="~/Images/bishopblack.png" /></td>
+                   <td id="g1"  class="blackCell"><img src="~/Images/knightblack.png" /></td>
+                   <td id="h1"  class="whiteCell"><img src="~/Images/rookblack.png" /></td>
                    <td class="positionY">1</td>
                </tr>
                <tr>
