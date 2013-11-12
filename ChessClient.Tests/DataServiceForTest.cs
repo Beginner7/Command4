@@ -14,6 +14,10 @@ namespace ChessClient.Tests {
         public DataServiceForTest() {
             Games = new GameRepositoryForTest();
         }
+
+
+        public IGamesRepository User
+        {get ; private set; }
     }
 
     public class GameRepositoryForTest : IGamesRepository {

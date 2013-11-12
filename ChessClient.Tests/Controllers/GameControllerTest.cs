@@ -31,5 +31,17 @@ namespace ChessClient.Tests.Controllers {
             IEnumerable<GameState> games=(IEnumerable<GameState>)result.Model;
             Assert.AreEqual(gameId, games.First().GameId);
         }
+        [TestMethod]
+        public void Move()
+        {
+            // Arrange
+            GameController controller = new GameController(ds);
+
+            // Act
+            //ViewResult result = controller.
+
+            // Assert
+            //IEnumerable<GameState> games = (IEnumerable<GameState>)result.Model;
+        }
     }
 }
