@@ -754,3 +754,56 @@ tr.pager td {
             margin: 0;
         }
 }
+
+
+    #tabledesk {
+    }
+
+    .blackCell {
+        background-color: saddlebrown ;
+        padding: 0em 0em 0em 0em;
+        height: 80px;
+        width: 80px;
+        max-width:80px;
+        max-height: 80px;
+
+    }
+
+    .whiteCell {
+        background-color:sandybrown ;
+        padding: 0em 0em 0em 0em;
+        height: 80px;
+        width: 80px;
+        max-width:80px;
+        max-height: 80px;
+    }
+
+    .positionX {   
+        height:20px;
+        text-align:center;
+        padding: 0em 0em 0em 0em;
+    }
+
+    .positionY {   
+        width:20px;
+        text-align:center;
+        padding: 0em 0em 0em 0em;
+    }
+
+    .MovesHistory {
+        border:solid;        
+        padding: 20px 20px  20px 20px;
+        width: 640px;    
+    }
+
+
+
+
+
+
+  
+    
+
+
+
+

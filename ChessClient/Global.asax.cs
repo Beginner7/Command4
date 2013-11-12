@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -12,14 +13,19 @@ namespace ChessClient {
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication {
-        protected void Application_Start() {
-            AreaRegistration.RegisterAllAreas();
+        public static string SertviceUri { get { return ConfigurationManager.AppSettings["SertviceUri"]; } }
 
+        protected void Application_Start() {
+            ConfigureResolver();
+            AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+        }
+        void ConfigureResolver() {
+            DependencyResolver.SetResolver(new DataServiceContainer());
         }
     }
 }

@@ -25,9 +25,14 @@ namespace ChessService.Controllers {
             return respository.GetGame(gameId);
         }
 
-        // POST api/games
-        public void Post([FromBody] GameMove move) {
-            respository.RegisterMove(move);
+        // Create
+        public void Post([FromBody] GameState newGame) {
+            respository.StartGame(newGame);
+        }
+
+        //Update
+        public void Put([FromBody] GameState game) {
+            respository.RegisterMove(game.GameId, game.Moves.Last());
         }
     }
 }

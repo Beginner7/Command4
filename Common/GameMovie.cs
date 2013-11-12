@@ -9,8 +9,6 @@ namespace Common {
     [DataContract]
     public class GameMove {
         [DataMember]
-        public Guid GameId { get; set; }
-        [DataMember]
         public string MoveNotation { get; set; }
     }
 }
