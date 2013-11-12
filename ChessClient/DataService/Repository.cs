@@ -25,7 +25,7 @@ namespace ChessClient.DataService {
     public class RepositoryBase {
         protected const string xmlContentType = "text/xml";
         protected const string jsonContentType = "application/json";
-        protected const string urlFormat = "{0}/{1}";
+        protected const string urlFormat = "{0}/{1}{2}";
         protected static readonly MediaTypeWithQualityHeaderValue mediaType = new MediaTypeWithQualityHeaderValue(xmlContentType);
         protected readonly string name;
         protected readonly string baseUrl;
@@ -40,8 +40,8 @@ namespace ChessClient.DataService {
             : base(name, baseUrl) {
         }
 
-        protected string GetUrl() {
-            return string.Format(urlFormat, baseUrl, name);
+        protected string GetUrl(string parameters) {
+            return string.Format(urlFormat, baseUrl, name, parameters);
         }
         protected RepositoryResult<TOtherDto> Get<TOtherDto>(string url) {
             using(var httpClient = new HttpClient()) {
@@ -59,7 +59,7 @@ namespace ChessClient.DataService {
                         try {
                             var readTask = response.Content.ReadAsStreamAsync();
                             readTask.Wait();
-                            value = (TOtherDto)new DataContractJsonSerializer(typeof(TOtherDto)).ReadObject(readTask.Result);
+                            value = (TOtherDto)new DataContractSerializer(typeof(TOtherDto)).ReadObject(readTask.Result);
                             code = HttpStatusCode.OK;
                         } catch(Exception ex) {
                             exception = ex;
@@ -76,14 +76,13 @@ namespace ChessClient.DataService {
                 };
             }
         }
-
         public RepositoryResult<TDto> Add(TDto data) {
             using(var httpClient = new HttpClient()) {
                 using(var resultStream = new MemoryStream()) {
                     new DataContractJsonSerializer(typeof(TDto)).WriteObject(resultStream, data);
                     resultStream.Seek(0, SeekOrigin.Begin);
                     StringContent content = new StringContent(new StreamReader(resultStream).ReadToEnd(), Encoding.UTF8, jsonContentType);
-                    var responseTask = httpClient.PostAsync(GetUrl(), content);
+                    var responseTask = httpClient.PostAsync(GetUrl(null), content);
                     TDto value = null;
                     responseTask.Wait();
                     var response = responseTask.Result;
@@ -107,5 +106,36 @@ namespace ChessClient.DataService {
                 }
             }
         }
+        public RepositoryResult Update(TDto data) {
+            return Update(data, GetUrl(null));
+        }
+        protected RepositoryResult Update<TOtherDto>(TOtherDto data, string url) where TOtherDto : class {
+            using(var httpClient = new HttpClient())
+            using(var contentStream = new MemoryStream()) {
+                new DataContractJsonSerializer(typeof(TOtherDto)).WriteObject(contentStream, data);
+                contentStream.Seek(0, SeekOrigin.Begin);
+                StringContent content = new StringContent(new StreamReader(contentStream).ReadToEnd(), Encoding.UTF8, jsonContentType);
+                var responseTask = httpClient.PutAsync(url, content);
+                responseTask.Wait();
+                var response = responseTask.Result;
+                return new RepositoryResult {
+                    StatusCode = response.StatusCode,
+                    IsSuccessStatusCode = response.IsSuccessStatusCode,
+                    Exception = null
+                };
+            }
+        }
+        public RepositoryResult Delete(string url) {
+            using(var httpClient = new HttpClient()) {
+                var resultTask = httpClient.DeleteAsync(url);
+                resultTask.Wait();
+                var response = resultTask.Result;
+                return new RepositoryResult {
+                    StatusCode = response.StatusCode,
+                    IsSuccessStatusCode = response.IsSuccessStatusCode
+                };
+            }
+        }
+
     }
 }

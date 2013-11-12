@@ -18,8 +18,7 @@ namespace ChessService.Tests.Controllers {
 
         [TestInitialize]
         public void Init() {
-            Guid gameRequest = repository.GameRequest(Guid.NewGuid());
-            gameId = repository.StartGame(gameRequest, Guid.NewGuid(), Guid.NewGuid());
+            gameId = repository.StartGame(new GameState() { GameId = gameId, BlackGamer = Guid.NewGuid(), WhiteGamer = Guid.NewGuid() });
         }
 
         [TestMethod]
@@ -49,12 +48,36 @@ namespace ChessService.Tests.Controllers {
         }
 
         [TestMethod]
-        public void Post() {
+        public void Create() {
             // Arrange
             GamesController controller = new GamesController(repository);
 
             // Act
-            controller.Post(new GameMove() { GameId = gameId, MoveNotation = "..." });
+            Guid newGameId = Guid.NewGuid();
+            Guid newBlackGamer = Guid.NewGuid();
+            Guid newWhiteGamer = Guid.NewGuid();
+            controller.Post(new GameState() { GameId = newGameId, BlackGamer = newBlackGamer, WhiteGamer = newWhiteGamer });
+            GameState game = controller.Get(newGameId);
+
+            // Assert
+            Assert.AreEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", game.GameStateNotation);
+            Assert.AreEqual(newGameId, game.GameId);
+            Assert.AreEqual(newBlackGamer, game.BlackGamer);
+            Assert.AreEqual(newWhiteGamer, game.WhiteGamer);
+        }
+
+        [TestMethod]
+        public void Update() {
+            // Arrange
+            GamesController controller = new GamesController(repository);
+            GameState game = controller.Get(gameId);
+            List<GameMove> moves = new List<GameMove>(game.Moves);
+            moves.Add(new GameMove() { MoveNotation = "..." });
+            game.Moves = moves;
+            controller.Put(game);
+
+            // Act
+            GameState updatedGame = controller.Get(gameId);
 
             // Assert
         }

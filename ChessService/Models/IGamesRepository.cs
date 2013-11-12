@@ -8,8 +8,8 @@ using Common;
 namespace ChessService.Models {
     public interface IGamesRepository {
         Guid GameRequest(Guid gamer);
-        Guid StartGame(Guid gameRequest, Guid whiteGamer, Guid blackGamer);
-        string RegisterMove(GameMove move);
+        Guid StartGame(GameState newGame);
+        string RegisterMove(Guid gameId, GameMove move);
         IEnumerable<GameState> GetGames();
         GameState GetGame(Guid gameId);
     }
