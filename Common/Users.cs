@@ -20,10 +20,13 @@ namespace Common
         public Guid UserId { get; set; }
        
 
-
         public Users()
         {
             
+        }
+
+        public void RegisterUser(Users user)
+        {
         }
     }
 }

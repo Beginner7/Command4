@@ -21,25 +21,25 @@ namespace ChessService.Controllers
         // GET api/users
         public IEnumerable<Users> Get()
         {
-            return null;// respository.GetUsers();
+            return respository.GetUsers();
         }
 
         // GET api/users?login=ololoshka
         public Users Get(string login)
         {
-            return null;// respository.GetUser(login);
+            return respository.GetUser(login);
         }
 
         // Create
-        public void Post([FromBody] Users login, [FromBody] Users password, [FromBody] Users name)
+        public void Post(string login, string password, string name)
         {
-           //respository.RegisterUser(login,password,name);
+            respository.UserRegister(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }
 
         //Update
-        public void Post([FromBody] Users currentlogin, [FromBody] Users currentpassword, [FromBody] Users newname, [FromBody] Users newpassword)
+        public void Post(string currentlogin, string currentpassword, string newname, string newpassword)
         {
-           // respository.UpdateUser(currentlogin, currentpassword, newname, newpassword);
+            //respository.UserUpdate(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }
     }
 }

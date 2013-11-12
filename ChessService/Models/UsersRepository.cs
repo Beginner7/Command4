@@ -12,7 +12,7 @@ namespace ChessService.Models
     {
         Dictionary<Guid, Users> users = new Dictionary<Guid, Users>();
 
-        public Guid GameRequest(Guid gamer)
+        public Guid UserRequest(Guid UserId)
         {
             //GameState gameState = new GameState();
             //Guid gameId = Guid.NewGuid();
@@ -20,46 +20,40 @@ namespace ChessService.Models
             return Guid.Empty;
         }
 
-        public Guid StartGame(GameState newGame)
+        public Guid UserUpdate(Users NewUser)
         {
-            //games.Add(newGame.GameId, newGame);
-            return newGame.GameId;
+            Users currentUser;
+
+            if (!users.TryGetValue(NewUser.UserId, out currentUser))
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            currentUser.Name = NewUser.Name;
+            currentUser.Password = NewUser.Password;
+            return NewUser.UserId;
         }
 
-        public string RegisterMove(Guid gameId, GameMove move)
+        public Guid UserRegister(Users user)
         {
-            GameState gameState;
-            //if (!games.TryGetValue(gameId, out gameState))
-            //{
-            //    throw new HttpResponseException(HttpStatusCode.NotFound);
-            //}
-            //gameState.RegisterMove(move);
-            return null;// gameState.GameStateNotation;
+            users.Add(user.UserId, user);
+            return user.UserId;
         }
 
-        public IEnumerable<GameState> GetUsers()
+        public IEnumerable<Users> GetUsers()
         {
-            return null;
+            return users.Values;
         }
-        public GameState GetGame(Guid gameId)
+        public Users GetUser(Guid UserId)
         {
-            GameState notation = null;
-            //games.TryGetValue(gameId, out notation);
+            Users notation = null;
+            users.TryGetValue(UserId, out notation);
             return notation;
         }
 
 
-        public Guid StartGame(Users newGame)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Users> GetGames()
-        {
-            throw new NotImplementedException();
-        }
-
-        Users IUsersRepository.GetGame(Guid gameId)
+        public Users GetUser(string login)
         {
             throw new NotImplementedException();
         }
