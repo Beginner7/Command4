@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Game\Cell.cs" />
     <Compile Include="Models\Game\GameModels.cs" />
     <Compile Include="Models\IGamesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -323,8 +324,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Game\Game.cshtml" />
     <Content Include="Views\Game\InputMove.cshtml" />
+    <Content Include="Views\Game\GameList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -352,7 +354,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>3054</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:57130/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -18,29 +18,33 @@ namespace ChessClient.Controllers {
         // GET: /Game/
         [HttpGet]
         public ActionResult Index() {
+            return Index(Guid.NewGuid());
+
+            /*
             RepositoryResult<IEnumerable<GameState>> result = repository.Games.GetGames();
-            if(result.IsSuccessStatusCode) { }
-            return View(result.Value);
+            return View("GameList", result.Value);
+             */ 
+
         }
 
         [HttpPost]
-        public ActionResult Index(GameModels gameModel) {
-            string[] move;
+        public ActionResult Index(Guid gameOid) {
+            //TODO get gamestate from service
+            GameState gameState = new GameState();
+            GameModels gameModels = new GameModels(gameState);
+            //string[] move;
 
-            move = gameModel.ConvertMove(gameModel.move);
-            ViewBag.From = move[0];
-            ViewBag.To = move[1];
-
-
+            //move = gameModel.ConvertMove(gameModel.move);
+            //ViewBag.From = move[0];
+            //ViewBag.To = move[1];
+            /*
             if(Request.IsAjaxRequest()) {
                 ViewBag.Show = "Частичное";
                 return PartialView();
 
-            } else {
-
-                ViewBag.Show = "1234";
-                return View();
-            }
+            }*/
+            return View("Game", gameModels);
+  
 
         }
 

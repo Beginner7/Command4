@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Common.GameState>
+
+@{
+    ViewBag.Title = "GameList";
+}
+
+@{
+    <ul>
+    @foreach(Common.GameState gamestate in Model) {
+        <li>
+            <a href="@gamestate.GameId">@gamestate.GameStateNotation</a>
+
+        </li>   
+    }
+    </ul>
+}
+
+<h2>GameList</h2>

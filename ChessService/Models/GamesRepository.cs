@@ -16,7 +16,7 @@ namespace ChessService.Models {
             games[gameId] = gameState;
             return gameId;
         }
-
+        
         public Guid StartGame(GameState newGame) {
             games.Add(newGame.GameId, newGame);
             return newGame.GameId;
