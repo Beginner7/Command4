@@ -4,7 +4,7 @@
     ViewBag.Title = "Шахматы";
     AjaxOptions ajax = new AjaxOptions
     {
-        UpdateTargetId = "tabledesk",
+        UpdateTargetId = "tablecell",
         InsertionMode = InsertionMode.Replace,
         HttpMethod = "POST"
     };
@@ -45,11 +45,9 @@
            <input type="button" value="Сделать ход" onclick="Makemove('@ViewBag.From','@ViewBag.To')">                       
          }
       
-        }   
-        </div>   
-        @Model.desk[0,0] 
+        }    
             
-           <table class="tabledesk">
+           <table class="tablecell">
                <tr >
                    <td> </td>
                    <td class="positionX">a</td>
@@ -64,26 +62,26 @@
                </tr>
                <tr>
                    <td class="positionY">8</td>
-                   <td id="a8" class="whiteCell"><img src="~/Images/@Model.desk[0,0]"/></td>
-                   <td id="b8" class="blackCell"><img src="~/Images/@Model.desk[0,1]"/></td>
-                   <td id="c8" class="whiteCell"><img src="~/Images/@Model.desk[0,2]" /></td>
-                   <td id="d8" class="blackCell"><img src="~/Images/@Model.desk[0,3]" /></td>
-                   <td id="e8" class="whiteCell"><img src="~/Images/@Model.desk[0,4]" /></td>
-                   <td id="f8" class="blackCell"><img src="~/Images/@Model.desk[0,5]" /></td>
-                   <td id="g8" class="whiteCell"><img src="~/Images/@Model.desk[0,6]"/></td>
-                   <td id="h8" class="blackCell"><img src="~/Images/@Model.desk[0,7]"/></td>
+                   <td id="a8" class="whiteCell"><img src="~/Images/@Model.cell[0,0]"/></td>
+                   <td id="b8" class="blackCell"><img src="~/Images/@Model.cell[0,1]"/></td>
+                   <td id="c8" class="whiteCell"><img src="~/Images/@Model.cell[0,2]" /></td>
+                   <td id="d8" class="blackCell"><img src="~/Images/@Model.cell[0,3]" /></td>
+                   <td id="e8" class="whiteCell"><img src="~/Images/@Model.cell[0,4]" /></td>
+                   <td id="f8" class="blackCell"><img src="~/Images/@Model.cell[0,5]" /></td>
+                   <td id="g8" class="whiteCell"><img src="~/Images/@Model.cell[0,6]"/></td>
+                   <td id="h8" class="blackCell"><img src="~/Images/@Model.cell[0,7]"/></td>
                    <td class="positionY">8</td>
                </tr>
                <tr>
                    <td class="positionY">7</td>
-                   <td id="a7"  class="blackCell"><img src="~/Images/@Model.desk[1,0]" /></td>
-                   <td id="b7"  class="whiteCell"><img src="~/Images/@Model.desk[1,1]" /></td>
-                   <td id="c7"  class="blackCell"><img src="~/Images/@Model.desk[1,2]" /></td>
-                   <td id="d7"  class="whiteCell"><img src="~/Images/@Model.desk[1,3]" /></td>
-                   <td id="e7"  class="blackCell"><img src="~/Images/@Model.desk[1,4]" /></td>
-                   <td id="f7"  class="whiteCell"><img src="~/Images/@Model.desk[1,5]" /></td>
-                   <td id="g7"  class="blackCell"><img src="~/Images/@Model.desk[1,6]" /></td>
-                   <td id="h7"  class="whiteCell"><img src="~/Images/@Model.desk[1,7]" /></td>
+                   <td id="a7"  class="blackCell"><img src="~/Images/@Model.cell[1,0]" /></td>
+                   <td id="b7"  class="whiteCell"><img src="~/Images/@Model.cell[1,1]" /></td>
+                   <td id="c7"  class="blackCell"><img src="~/Images/@Model.cell[1,2]" /></td>
+                   <td id="d7"  class="whiteCell"><img src="~/Images/@Model.cell[1,3]" /></td>
+                   <td id="e7"  class="blackCell"><img src="~/Images/@Model.cell[1,4]" /></td>
+                   <td id="f7"  class="whiteCell"><img src="~/Images/@Model.cell[1,5]" /></td>
+                   <td id="g7"  class="blackCell"><img src="~/Images/@Model.cell[1,6]" /></td>
+                   <td id="h7"  class="whiteCell"><img src="~/Images/@Model.cell[1,7]" /></td>
                    <td class="positionY">7</td>
                </tr>
                <tr>

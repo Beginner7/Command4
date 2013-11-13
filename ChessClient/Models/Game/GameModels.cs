@@ -27,34 +27,44 @@ namespace ChessClient.Models
 
         void Parse(string p)
         {
-            const char EOLN='\n'; 
-            int  counter=0, rowNumber=0, value=0;
+            const char EOLN=' '; 
+            int  counter=0, rowNumber=0, value=0, index=0;
             char cursor=p[0];
             bool result=false;
-            while (cursor!=' ') {
+            while (cursor!=EOLN) {
+                if (cursor == '/')
+                {
+                    counter++;
+                    cursor = p[counter];
+                    index = 0;
+                    rowNumber++;
+                    continue;
+                }
                 result=System.Int32.TryParse(cursor.ToString(),out value);
                 if (result) {
                     for (int i=1;i<=value;i++) {
-                        GetFigureType(cursor);
+                        cells[rowNumber, index] = GetFigureType(cursor);
+                        index++;
                     }
-                    counter+=value;
-                    cursor=p[counter];
                 }
                 else { 
-                    cells[rowNumber,cursor]=GetFigureType(cursor);
+                    cells[rowNumber, index]=GetFigureType(cursor);
+                    index++;
+                }
                     counter++;
                     cursor=p[counter];
-                }
             }
         }
 
         public Figure GetCellInfo(int x, int y) {
-            return new Figure();
+            Figure temp = new Figure();
+            temp=cells[x,y];
+            return temp;
         }
 
         public string GetFigureImage(int x, int y) {
-           
-            return string.Empty;
+            string str = "images/" + cells[x, y].Type + cells[x, y].Color + ".png"; 
+            return str;
         }
 
         private Figure GetFigureType(char code) {
@@ -130,17 +140,6 @@ namespace ChessClient.Models
             return temp;
         }
 
-               
-        public string[,] desk = new string[8, 8]
-          {{"rookwhite.png","knightwhite.png","bishopwhite.png","queenwhite.png","kingwhite.png","bishopwhite.png","knightwhite.png","rookwhite.png"},
-           {"pawnwhite.png","pawnwhite.png","pawnwhite.png","pawnwhite.png","pawnwhite.png","pawnwhite.png","pawnwhite.png","pawnwhite.png"},
-           {"","","","","","","",""},
-           {"","","","","","","",""},
-           {"","","","","","","",""},
-           {"","","","","","","",""},
-           {"pawnblack.png","pawnblack.png","pawnblack.png","pawnblack.png","pawnblack.png","pawnblack.png","pawnblack.png","pawnblack.png"},
-           {"rookblack.png","knightblack.png","bishopblack.png","queenblack.png","kingblack.png","bishopblack.png","knightblack.png","rookblack.png"}
-          };
 
         public string move { get; set; }
 
