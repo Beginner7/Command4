@@ -56,6 +56,33 @@ namespace ChessClient.Models
             }
         }
 
+        public string CreateStateByModel() {
+            int row=0;
+            System.Text.StringBuilder temp = new System.Text.StringBuilder();
+            for (int i=0;i<8;i++) {
+                for (int j=0;j<8;j++) {
+                    if (cells[i,j].Type!=FigureType.Empty) {
+                       if (row!=0) {
+                           temp.Append(row.ToString());
+                       }
+                        row = 0;
+                        //TODO: Get figure's symbol
+                    }
+                    else {
+                        row++;
+                    }
+                    if (j == 7) { row = 0; };
+                }
+            }
+            return temp.ToString();
+        }
+
+
+
+
+                        
+
+
         public Figure GetCellInfo(int x, int y) {
             Figure temp = new Figure();
             temp=cells[x,y];

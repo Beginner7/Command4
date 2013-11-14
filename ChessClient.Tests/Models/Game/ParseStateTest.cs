@@ -23,12 +23,15 @@ namespace ChessClient.Tests.Model
             GameState state = new GameState();
             GameModels m = new GameModels(state);
             Figure f = new Figure();
+            
             f.Type = FigureType.Rook;
             f.Color = FigureColor.Black;
             Assert.AreEqual(m.cells[7, 7], f);
+            
             f.Type = FigureType.Empty;
             f.Color = FigureColor.Empty;
             Assert.AreEqual(m.cells[4,4], f);
+            
             f.Type = FigureType.Queen;
             f.Color = FigureColor.White;
             Assert.AreEqual(m.cells[0,3], f);
