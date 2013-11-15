@@ -116,10 +116,10 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountControllerTest.cs" />
     <Compile Include="DataServiceForTest.cs" />
-    <Compile Include="Models\Game\ParseStateTest.cs" />
+    <Compile Include="Models\Game\ParseStatet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\GameControllerTest.cs" />
-    <Compile Include="Models\Game\GetImageTypeTest.cs" />
+    <Compile Include="Models\Game\GetImageType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

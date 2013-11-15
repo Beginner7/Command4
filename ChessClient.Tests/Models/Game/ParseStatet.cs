@@ -5,7 +5,6 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessClient.Models.Game;
 using ChessClient;
 using ChessClient.Controllers;
 using ChessClient.Models;
@@ -15,7 +14,7 @@ using Common;
 namespace ChessClient.Tests.Model
 {
     [TestClass]
-    public class ParseStateTest
+    public class ParsingState
     {
         [TestMethod]
         public void TestStateParsing()

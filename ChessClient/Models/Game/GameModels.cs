@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ChessClient.Models.Game;
 using Common;
 
 namespace ChessClient.Models
@@ -127,42 +126,7 @@ namespace ChessClient.Models
                       temp.Type=FigureType.Queen;
                       break;
                 }
-                case 'p': {
-                    temp.Color=FigureColor.White;
-                    temp.Type=FigureType.Pawn;
-                    break;
-                }
-                case 'r' : {
-                       temp.Color=FigureColor.White;
-                       temp.Type=FigureType.Rook;
-                       break;
-                }
-                case 'n' : {
-                       temp.Color=FigureColor.White;
-                       temp.Type=FigureType.Knight;
-                       break;
-                }
-                case 'b' : {
-                       temp.Color=FigureColor.White;
-                       temp.Type=FigureType.Bishop;
-                       break;
-                }
-                case 'k' : {
-                      temp.Color=FigureColor.White;
-                      temp.Type=FigureType.King;
-                      break;
-                }
-                case 'q' : {
-                      temp.Color=FigureColor.White;
-                      temp.Type=FigureType.Queen;
-                      break;
-                }
-                default:
-                    {
-                        temp.Color = FigureColor.Empty;
-                        temp.Type = FigureType.Empty;
-                        break;
-                    }
+                
             }
             return temp;
         }

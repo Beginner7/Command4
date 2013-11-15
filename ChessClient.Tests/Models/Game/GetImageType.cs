@@ -5,7 +5,6 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChessClient.Models.Game;
 using ChessClient;
 using ChessClient.Controllers;
 using ChessClient.Models;
@@ -13,7 +12,7 @@ using Common;
 namespace ChessClient.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class GetFigureImage
     {
         [TestMethod]
         public void TestGetImageType()
