@@ -31,8 +31,7 @@ namespace ChessClient.Models
             char cursor=p[0];
             bool result=false;
             while (cursor!=EOLN) {
-                if (cursor == '/')
-                {
+                if (cursor == '/'){
                     counter++;
                     cursor = p[counter];
                     index = 0;
@@ -47,10 +46,10 @@ namespace ChessClient.Models
                     }
                 }
                 else { 
-                    cells[rowNumber, index]=GetFigureType(cursor);
+                    cells[rowNumber, index]= GetFigureType(cursor);
                     index++;
                 }
-                    counter++;
+                counter++;
                     cursor=p[counter];
             }
         }
@@ -97,35 +96,78 @@ namespace ChessClient.Models
             Figure temp=new Figure();
             switch (code) {
                 case 'P': {
-                    temp.Color=FigureColor.Black;
+                    temp.Color = FigureColor.White;
                     temp.Type=FigureType.Pawn;
                     break;
                 }
                 case 'R' : {
-                       temp.Color=FigureColor.Black;
+                    temp.Color = FigureColor.White;
                        temp.Type=FigureType.Rook;
                        break;
                 }
                 case 'N' : {
-                       temp.Color=FigureColor.Black;
+                    temp.Color = FigureColor.White;
                        temp.Type=FigureType.Knight;
                        break;
                 }
                 case 'B' : {
-                       temp.Color=FigureColor.Black;
+                    temp.Color = FigureColor.White;
                        temp.Type=FigureType.Bishop;
                        break;
                 }
                 case 'K' : {
-                      temp.Color=FigureColor.Black;
+                    temp.Color = FigureColor.White;
                       temp.Type=FigureType.King;
                       break;
                 }
                 case 'Q' : {
-                      temp.Color=FigureColor.Black;
+                      temp.Color=FigureColor.White;
                       temp.Type=FigureType.Queen;
                       break;
                 }
+
+                case 'p':
+                    {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Pawn;
+                        break;
+                    }
+                case 'r':
+                    {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Rook;
+                        break;
+                    }
+                case 'n':
+                    {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Knight;
+                        break;
+                    }
+                case 'b':
+                    {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Bishop;
+                        break;
+                    }
+                case 'k':
+                    {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.King;
+                        break;
+                    }
+                case 'q':
+                    {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Queen;
+                        break;
+                    }
+                default:
+                    {
+                        temp.Color = FigureColor.Empty;
+                        temp.Type = FigureType.Empty;
+                        break;
+                    }
                 
             }
             return temp;

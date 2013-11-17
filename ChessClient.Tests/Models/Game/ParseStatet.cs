@@ -24,7 +24,7 @@ namespace ChessClient.Tests.Model
             Figure f = new Figure();
             
             f.Type = FigureType.Rook;
-            f.Color = FigureColor.Black;
+            f.Color = FigureColor.White;
             Assert.AreEqual(m.cells[7, 7], f);
             
             f.Type = FigureType.Empty;
@@ -32,7 +32,7 @@ namespace ChessClient.Tests.Model
             Assert.AreEqual(m.cells[4,4], f);
             
             f.Type = FigureType.Queen;
-            f.Color = FigureColor.White;
+            f.Color = FigureColor.Black;
             Assert.AreEqual(m.cells[0,3], f);
         }
     }
