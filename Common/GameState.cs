@@ -19,7 +19,8 @@ namespace Common {
         [DataMember]
         public IEnumerable<GameMove> Moves { get; set; }
 
-        public GameState() {
+        public GameState()
+        {
             this.GameStateNotation = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
             this.Moves = new List<GameMove>();
         }

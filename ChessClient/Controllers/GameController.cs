@@ -43,7 +43,8 @@ namespace ChessClient.Controllers {
                 return PartialView();
 
             }*/
-            return View("Game", gameModels);
+            ViewBag.gameOid = gameOid;
+            return View("Game",gameModels);
   
 
         }

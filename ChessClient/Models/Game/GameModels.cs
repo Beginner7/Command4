@@ -17,11 +17,13 @@ namespace ChessClient.Models
     {
         public Figure[,] cells = new Figure[8, 8];
         GameState gameState;
+        string temp { get; set; }
         
         public GameModels(GameState gameState)
         {
             this.gameState = gameState;
             Parse(gameState.GameStateNotation);
+            temp = CreateStateByModel();
         }
 
         void Parse(string p)
@@ -50,7 +52,7 @@ namespace ChessClient.Models
                     index++;
                 }
                 counter++;
-                    cursor=p[counter];
+                cursor=p[counter];
             }
         }
 
@@ -58,27 +60,31 @@ namespace ChessClient.Models
             int row=0;
             System.Text.StringBuilder temp = new System.Text.StringBuilder();
             for (int i=0;i<8;i++) {
+                if (i != 0)
+                {
+                    temp.Append('/');
+                }
                 for (int j=0;j<8;j++) {
                     if (cells[i,j].Type!=FigureType.Empty) {
                        if (row!=0) {
                            temp.Append(row.ToString());
                        }
                         row = 0;
-                        //TODO: Get figure's symbol
+                        temp.Append(GetFigureSymbol(cells[i, j]));
                     }
                     else {
                         row++;
                     }
-                    if (j == 7) { row = 0; };
+                    if (j == 7) { 
+                        if (row != 0) { 
+                            temp.Append(row.ToString());
+                        } 
+                        row = 0;
+                    };
                 }
             }
             return temp.ToString();
-        }
-
-
-
-
-                        
+        }                       
 
 
         public Figure GetCellInfo(int x, int y) {
@@ -88,9 +94,102 @@ namespace ChessClient.Models
         }
 
         public string GetFigureImage(int x, int y) {
-            string str = "images/" + cells[x, y].Type + cells[x, y].Color + ".png"; 
-            return str;
+            if (cells[x, y].Type != FigureType.Empty)
+            {
+                string str = "images/" + cells[x, y].Type + cells[x, y].Color + ".png";
+                return str;
+            }
+            else { 
+                string str = "";
+                return str; 
+            }
         }
+
+        private char GetFigureSymbol(Figure figure){
+            char temp = ' ';
+            switch (figure.Type)
+            {
+                case FigureType.Rook:
+                    {
+                        if (figure.Color == FigureColor.White){
+                            temp = 'R';
+                            break;
+                        }
+                        else{
+                            temp = 'r';
+                            break;
+                        }
+                    }
+                case FigureType.Knight:
+                    {
+                        if (figure.Color == FigureColor.White)
+                        {
+                            temp = 'N';
+                            break;
+                        }
+                        else
+                        {
+                            temp = 'n';
+                            break;
+                        }
+                    }
+                case FigureType.Bishop:
+                    {
+                        if (figure.Color == FigureColor.White)
+                        {
+                            temp = 'B';
+                            break;
+                        }
+                        else
+                        {
+                            temp = 'b';
+                            break;
+                        }
+                    }
+                case FigureType.Queen:
+                    {
+                        if (figure.Color == FigureColor.White)
+                        {
+                            temp = 'Q';
+                            break;
+                        }
+                        else
+                        {
+                            temp = 'q';
+                            break;
+                        }
+                    }
+                case FigureType.King:
+                    {
+                        if (figure.Color == FigureColor.White)
+                        {
+                            temp = 'K';
+                            break;
+                        }
+                        else
+                        {
+                            temp = 'k';
+                            break;
+                        }
+                    }
+                case FigureType.Pawn:
+                    {
+                        if (figure.Color == FigureColor.White)
+                        {
+                            temp = 'P';
+                            break;
+                        }
+                        else
+                        {
+                            temp = 'p';
+                            break;
+                        }
+                    }
+            }
+            return temp;
+        }
+
+
 
         private Figure GetFigureType(char code) {
             Figure temp=new Figure();
@@ -177,12 +276,6 @@ namespace ChessClient.Models
         public string move { get; set; }
 
 
-        public string[] ConvertMove(string move){
-             string[] str= move.Split(new Char[] {' '});
-             //From = str[0];
-             //To = str[1];
-             return str;
-        }
 
     }
 }
