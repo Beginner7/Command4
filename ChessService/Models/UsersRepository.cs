@@ -12,7 +12,7 @@ namespace ChessService.Models
     {
         Dictionary<Guid, Users> users = new Dictionary<Guid, Users>();
 
-        public Guid UserRequest(Guid UserId)
+        public Guid UserRequest(Guid userId)
         {
             //GameState gameState = new GameState();
             //Guid gameId = Guid.NewGuid();
@@ -20,34 +20,34 @@ namespace ChessService.Models
             return Guid.Empty;
         }
 
-        public Guid UserUpdate(Users NewUser)
+        public Guid UserUpdate(Users newUser)
         {
             Users currentUser;
 
-            if (!users.TryGetValue(NewUser.UserId, out currentUser))
+            if (!users.TryGetValue(newUser.userId, out currentUser))
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            currentUser.Name = NewUser.Name;
-            currentUser.Password = NewUser.Password;
-            return NewUser.UserId;
+            currentUser.Name = newUser.Name;
+            currentUser.Password = newUser.Password;
+            return newUser.userId;
         }
 
         public Guid UserRegister(Users user)
         {
-            users.Add(user.UserId, user);
-            return user.UserId;
+            users.Add(user.userId, user);
+            return user.userId;
         }
 
         public IEnumerable<Users> GetUsers()
         {
             return users.Values;
         }
-        public Users GetUser(Guid UserId)
+        public Users GetUser(Guid userId)
         {
             Users notation = null;
-            users.TryGetValue(UserId, out notation);
+            users.TryGetValue(userId, out notation);
             return notation;
         }
 

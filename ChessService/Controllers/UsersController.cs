@@ -33,11 +33,11 @@ namespace ChessService.Controllers
         // Create
         public void Post(string login, string password, string name)
         {
-            respository.UserRegister(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
+            respository.UserRegister(new Users() { userId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }
 
         //Update
-        public void Post(string currentlogin, string currentpassword, string newname, string newpassword)
+        public void Post(string currentLogin, string currentPassword, string newName, string newPassword)
         {
             //respository.UserUpdate(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }

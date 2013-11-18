@@ -17,7 +17,7 @@ namespace Common
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public Guid UserId { get; set; }
+        public Guid userId { get; set; }
        
 
         public Users()
