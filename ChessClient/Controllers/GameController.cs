@@ -18,7 +18,10 @@ namespace ChessClient.Controllers {
         // GET: /Game/
         [HttpGet]
         public ActionResult Index() {
-            return Index(Guid.NewGuid());
+            GameState gameState = new GameState();
+            gameState.GameId = Guid.NewGuid();
+            GameModel gameModels = new GameModel(gameState);
+            return View("Game", gameModels);
 
             /*
             RepositoryResult<IEnumerable<GameState>> result = repository.Games.GetGames();
@@ -28,22 +31,11 @@ namespace ChessClient.Controllers {
         }
 
         [HttpPost]
-        public ActionResult Index(Guid gameOid) {
-            //TODO get gamestate from service
-            GameState gameState = new GameState();
-            GameModels gameModels = new GameModels(gameState);
-            //string[] move;
+        public ActionResult Index(GameModel gameModels) {
+            //TODO get gamestate from service // gameState = gamestate from service 
+            gameModels.CreateMove(gameModels.move);
+            gameModels.Parse(gameModels.gameState.GameStateNotation);
 
-            //move = gameModel.ConvertMove(gameModel.move);
-            //ViewBag.From = move[0];
-            //ViewBag.To = move[1];
-            /*
-            if(Request.IsAjaxRequest()) {
-                ViewBag.Show = "Частичное";
-                return PartialView();
-
-            }*/
-            ViewBag.gameOid = gameOid;
             return View("Game",gameModels);
   
 

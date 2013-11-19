@@ -196,7 +196,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Game\ChessDesk.cs" />
     <Compile Include="Models\Game\Figure.cs" />
-    <Compile Include="Models\Game\GameModels.cs" />
+    <Compile Include="Models\Game\GameModel.cs" />
     <Compile Include="Models\IGamesRepository.cs" />
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

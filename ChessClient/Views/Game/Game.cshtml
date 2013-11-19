@@ -1,4 +1,4 @@
-﻿@model ChessClient.Models.GameModels
+﻿@model ChessClient.Models.GameModel
 @{
     ViewBag.Title = "Шахматы";
 }
@@ -24,8 +24,8 @@
     <li class="one">
         <h5>Ввведите ход:</h5>
         @using (Html.BeginForm()){ 
-           @Html.TextBoxFor(x => x.move)           
-           <input type="submit" value="Отправить">                         
+           @Html.TextBoxFor(model => model.move)           
+           <input type="submit" value="Отправить" >                         
          }
 
            <table class="tabledesk">

@@ -18,8 +18,8 @@ namespace ChessClient.Tests
         public void TestGetImageType()
         {
             GameState state = new GameState();
-            GameModels m = new GameModels(state);
-            string ImageFile="images/pawnwhite.png";
+            GameModel m = new GameModel(state);
+            string ImageFile="images/pawnblack.png";
             string GetImage = m.GetFigureImage(1, 3).ToLower();
             Assert.AreEqual(GetImage, ImageFile);
         }
