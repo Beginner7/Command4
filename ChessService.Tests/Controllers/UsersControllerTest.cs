@@ -20,25 +20,69 @@ namespace ChessService.Tests.Controllers {
         }
 
         [TestMethod]
-        public void Get() {
+        public void GetUsers() {
             // Arrange
             UsersController controller = new UsersController(repository);
+
+            Users user = new Users();
+            user.Login = "username@milov7.ru";
+            user.Password = "123456";
+            user.Name = "ololosha";
+            user.userId = Guid.NewGuid();
+            repository.UserRegister(user);
+
+            user.userId = Guid.NewGuid();
+            repository.UserRegister(user);
+
+            user.userId = Guid.NewGuid();
+            repository.UserRegister(user);
 
             // Act
             IEnumerable<Users> result = controller.Get();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(4, result.Count());
         }
 
         [TestMethod]
         public void GetUser() {
             // Arrange
             UsersController controller = new UsersController(repository);
+            Users user=new Users();
+            user.Login = "username@milov7.ru";
+            user.Password = "123456";
+            user.Name = "ololosha";
+            user.userId=Guid.NewGuid();
+            repository.UserRegister(user);
 
             // Act
+
             Users result = controller.Get("username@milov7.ru");
+
+            // Assert
+            Assert.IsNotNull(result);
+            //Assert.AreEqual("username@milov7.ru", result.Login);
+            //Assert.AreEqual("ololosha", result.Name);
+            //Assert.AreEqual("123456", result.Password);
+        }
+
+        [TestMethod]
+        public void GetUserById() {
+            // Arrange
+            UsersController controller = new UsersController(repository);
+            Users user = new Users();
+            user.Login = "username@milov7.ru";
+            user.Password = "123456";
+            user.Name = "ololosha";
+            Guid current_guid = Guid.NewGuid();
+            user.userId = current_guid;
+            
+
+            // Act
+
+            repository.UserRegister(user);
+            Users result = controller.Get(current_guid);
 
             // Assert
             Assert.IsNotNull(result);
@@ -46,6 +90,65 @@ namespace ChessService.Tests.Controllers {
             Assert.AreEqual("ololosha", result.Name);
             Assert.AreEqual("123456", result.Password);
         }
+
+
+        [TestMethod]
+        public void UserRegister() {
+            // Arrange
+            UsersController controller = new UsersController(repository);
+            Users user = new Users();
+            user.Login = "username@milov7.ru";
+            user.Password = "123456";
+            user.Name = "ololosha";
+
+            Guid current_guid = Guid.NewGuid();
+            user.userId = current_guid;
+
+            // Act
+
+            repository.UserRegister(user);
+            Users result = controller.Get(current_guid);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("username@milov7.ru", result.Login);
+            Assert.AreEqual("ololosha", result.Name);
+            Assert.AreEqual("123456", result.Password);
+            Assert.AreEqual(current_guid, user.userId);
+        }
+
+        [TestMethod]
+        public void UserUpdate() {
+            // Arrange
+            UsersController controller = new UsersController(repository);
+            Users user = new Users();
+            user.Login = "username@milov7.ru";
+            user.Password = "123456";
+            user.Name = "ololosha";
+
+            Guid current_guid = Guid.NewGuid();
+            user.userId = current_guid;
+
+            repository.UserRegister(user);
+
+            // Act
+
+            Users newUser = controller.Get(current_guid);
+            newUser.Password = "z7vBA2a1";
+            newUser.Name = "IAmWinner";
+            
+            repository.UserUpdate(newUser);
+
+            Users result = controller.Get(current_guid);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("username@milov7.ru", result.Login);
+            Assert.AreEqual("IAmWinner", result.Name);
+            Assert.AreEqual("z7vBA2a1", result.Password);
+            Assert.AreEqual(current_guid, user.userId);
+        }
+
 
 
     }

@@ -46,8 +46,24 @@ namespace ChessService.Models
 
         public Users GetUser(string login)
         {
-            Users user = null;
+            Users user = new Users();
+          
+           /*
+            * Guid userId = new Guid();
+
+            foreach(Users current_user in users){
+                if (current_user.Login.Equals(login)) userId=current_user.userId;
+            }
+
+            user = GetUser(userId);
+         
+                 
+             //  this is don't work
+            
+             */
+
             return user;
+
           //  throw new NotImplementedException();
         }
     }

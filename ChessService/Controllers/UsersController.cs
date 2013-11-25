@@ -30,13 +30,18 @@ namespace ChessService.Controllers
             return repository.GetUser(login);
         }
 
-        // Create
+        // GET api/users?userId=C601A3DA-69D9-4301-BA78-8406D1C8BA2B
+        public Users Get(Guid userId) {
+            return repository.GetUser(userId);
+        }
+
+        // Register
         public void Post(string login, string password, string name)
         {
             repository.UserRegister(new Users() { userId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }
 
-        //Update
+        // Update
         public void Post(string currentLogin, string currentPassword, string newName, string newPassword)
         {
             //repository.UserUpdate(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });

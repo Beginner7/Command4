@@ -25,8 +25,9 @@ namespace Common
             
         }
 
-        public void RegisterUser(Users user)
+      /*  public void RegisterUser(Users user)
         {
         }
+      */
     }
 }
