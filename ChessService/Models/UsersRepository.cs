@@ -12,14 +12,7 @@ namespace ChessService.Models
     {
         Dictionary<Guid, Users> users = new Dictionary<Guid, Users>();
 
-        public Guid UserRequest(Guid userId)
-        {
-            //GameState gameState = new GameState();
-            //Guid gameId = Guid.NewGuid();
-            //users[gameId] = gameState;
-            return Guid.Empty;
-        }
-
+      
         public Guid UserUpdate(Users newUser)
         {
             Users currentUser;
@@ -51,11 +44,11 @@ namespace ChessService.Models
             return notation;
         }
 
-
-
         public Users GetUser(string login)
         {
-            throw new NotImplementedException();
+            Users user = null;
+            return user;
+          //  throw new NotImplementedException();
         }
     }
 }

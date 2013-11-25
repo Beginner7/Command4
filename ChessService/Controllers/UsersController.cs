@@ -11,35 +11,35 @@ namespace ChessService.Controllers
 {
     public class UsersController : ApiController
     {
-        readonly IUsersRepository respository;
+        readonly IUsersRepository repository;
 
         public UsersController(IUsersRepository repository)
         {
-            this.respository = repository;
+            this.repository = repository;
         }
 
         // GET api/users
         public IEnumerable<Users> Get()
         {
-            return respository.GetUsers();
+            return repository.GetUsers();
         }
 
         // GET api/users?login=ololoshka
         public Users Get(string login)
         {
-            return respository.GetUser(login);
+            return repository.GetUser(login);
         }
 
         // Create
         public void Post(string login, string password, string name)
         {
-            respository.UserRegister(new Users() { userId = Guid.NewGuid(), Login = login, Name = name, Password = password });
+            repository.UserRegister(new Users() { userId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }
 
         //Update
         public void Post(string currentLogin, string currentPassword, string newName, string newPassword)
         {
-            //respository.UserUpdate(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
+            //repository.UserUpdate(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
         }
     }
 }
