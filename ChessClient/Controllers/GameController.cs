@@ -33,12 +33,12 @@ namespace ChessClient.Controllers {
         [HttpPost]
         public ActionResult Index(GameModel gameModels) {
             //TODO get gamestate from service // gameState = gamestate from service 
-            gameModels.CreateMove(gameModels.move);
-            gameModels.Parse(gameModels.gameState.GameStateNotation);
+         //   gameModels.MakeMove(gameModels.move);
+         //   gameModels.Parse(gameModels.gameState.GameStateNotation);
 
             return View("Game",gameModels);
   
-
+         //   repository.Games.RegisterMove(
         }
 
 
