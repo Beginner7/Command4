@@ -13,18 +13,18 @@ namespace ChessService.Models
         Dictionary<Guid, Users> users = new Dictionary<Guid, Users>();
 
       
-        public Guid UserUpdate(Users newUser)
+        public Guid UserUpdate(Users user)
         {
             Users currentUser;
 
-            if (!users.TryGetValue(newUser.userId, out currentUser))
+            if (!users.TryGetValue(user.userId, out currentUser))
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            currentUser.Name = newUser.Name;
-            currentUser.Password = newUser.Password;
-            return newUser.userId;
+            currentUser.Name = user.Name;
+            currentUser.Password = user.Password;
+            return user.userId;
         }
 
         public Guid UserRegister(Users user)
@@ -48,23 +48,16 @@ namespace ChessService.Models
         {
             Users user = new Users();
           
-           /*
-            * Guid userId = new Guid();
+            Guid userId = new Guid();
 
-            foreach(Users current_user in users){
-                if (current_user.Login.Equals(login)) userId=current_user.userId;
+            foreach(Users current_user in users.Values){
+                if (current_user.Login==login) userId=current_user.userId;
             }
 
-            user = GetUser(userId);
-         
-                 
-             //  this is don't work
-            
-             */
+            user = GetUser(userId);  
 
             return user;
 
-          //  throw new NotImplementedException();
         }
     }
 }

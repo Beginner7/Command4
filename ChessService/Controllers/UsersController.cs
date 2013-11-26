@@ -36,15 +36,15 @@ namespace ChessService.Controllers
         }
 
         // Register
-        public void Post(string login, string password, string name)
+        public void Post(Users user)
         {
-            repository.UserRegister(new Users() { userId = Guid.NewGuid(), Login = login, Name = name, Password = password });
+            repository.UserRegister(user);
         }
 
         // Update
-        public void Post(string currentLogin, string currentPassword, string newName, string newPassword)
+        public void Put(Users user)
         {
-            //repository.UserUpdate(new Users() { UserId = Guid.NewGuid(), Login = login, Name = name, Password = password });
+            repository.UserUpdate(user);
         }
     }
 }

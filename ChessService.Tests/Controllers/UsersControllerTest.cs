@@ -29,13 +29,15 @@ namespace ChessService.Tests.Controllers {
             user.Password = "123456";
             user.Name = "ololosha";
             user.userId = Guid.NewGuid();
-            repository.UserRegister(user);
+            controller.Post(user);
+
+
 
             user.userId = Guid.NewGuid();
-            repository.UserRegister(user);
+            controller.Post(user);
 
             user.userId = Guid.NewGuid();
-            repository.UserRegister(user);
+            controller.Post(user);
 
             // Act
             IEnumerable<Users> result = controller.Get();
@@ -54,7 +56,7 @@ namespace ChessService.Tests.Controllers {
             user.Password = "123456";
             user.Name = "ololosha";
             user.userId=Guid.NewGuid();
-            repository.UserRegister(user);
+            controller.Post(user);
 
             // Act
 
@@ -62,9 +64,9 @@ namespace ChessService.Tests.Controllers {
 
             // Assert
             Assert.IsNotNull(result);
-            //Assert.AreEqual("username@milov7.ru", result.Login);
-            //Assert.AreEqual("ololosha", result.Name);
-            //Assert.AreEqual("123456", result.Password);
+            Assert.AreEqual("username@milov7.ru", result.Login);
+            Assert.AreEqual("ololosha", result.Name);
+            Assert.AreEqual("123456", result.Password);
         }
 
         [TestMethod]
@@ -81,7 +83,7 @@ namespace ChessService.Tests.Controllers {
 
             // Act
 
-            repository.UserRegister(user);
+            controller.Post(user);
             Users result = controller.Get(current_guid);
 
             // Assert
@@ -106,7 +108,7 @@ namespace ChessService.Tests.Controllers {
 
             // Act
 
-            repository.UserRegister(user);
+            controller.Post(user);
             Users result = controller.Get(current_guid);
 
             // Assert
@@ -129,15 +131,14 @@ namespace ChessService.Tests.Controllers {
             Guid current_guid = Guid.NewGuid();
             user.userId = current_guid;
 
-            repository.UserRegister(user);
+            controller.Post(user);
 
             // Act
 
-            Users newUser = controller.Get(current_guid);
-            newUser.Password = "z7vBA2a1";
-            newUser.Name = "IAmWinner";
-            
-            repository.UserUpdate(newUser);
+            user.Name = "IAmWinner";
+            user.Password = "z7vBA2a1";
+
+            controller.Put(user);
 
             Users result = controller.Get(current_guid);
 
