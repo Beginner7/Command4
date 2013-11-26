@@ -7,7 +7,7 @@ using Common;
 namespace ChessClient.Models {
 
     public class GameModel {
-        public Figure[,] cells = new Figure[8, 8];
+        public Figure[,] cells;
         public GameState gameState;
         struct CoordinateXY {
             public int x;
@@ -17,7 +17,7 @@ namespace ChessClient.Models {
         public GameModel(GameState gamestate) {
 
             this.gameState = gamestate;
-            ChessOperations.Parse(gameState.GameStateNotation, cells);
+            this.cells=ChessOperations.Parse(gameState.GameStateNotation);
         }
 
         public string GetFigureImage(int x, int y) {

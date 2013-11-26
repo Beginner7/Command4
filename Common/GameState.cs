@@ -25,6 +25,15 @@ namespace Common {
             this.Moves = new List<GameMove>();
         }
         public void RegisterMove(GameMove move) {
+            List<GameMove> currentMoves = new List<GameMove>(Moves);
+            currentMoves.Add(move);
+            Moves = currentMoves;
+
+            Figure[,] cells = ChessOperations.Parse(GameStateNotation);
+
+            ChessOperations.MakeMove(move.MoveNotation, cells);
+
+            ChessOperations.CreateStateByModel(cells);
         }
     }
 }

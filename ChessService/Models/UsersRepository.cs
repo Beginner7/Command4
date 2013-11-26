@@ -44,14 +44,14 @@ namespace ChessService.Models
             return notation;
         }
 
-        public Users GetUser(string login)
+        public Users GetUser(string login, string password)
         {
             Users user = new Users();
           
             Guid userId = new Guid();
 
             foreach(Users current_user in users.Values){
-                if (current_user.Login==login) userId=current_user.userId;
+                if (current_user.Login==login && current_user.Password==password) userId=current_user.userId;
             }
 
             user = GetUser(userId);  

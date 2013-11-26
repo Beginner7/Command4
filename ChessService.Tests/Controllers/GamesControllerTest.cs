@@ -67,19 +67,23 @@ namespace ChessService.Tests.Controllers {
         }
 
         [TestMethod]
-        public void Update() {
+        public void GameUpdate() {
+            GameMove move = new GameMove() { MoveNotation = "a2 a4" };
             // Arrange
             GamesController controller = new GamesController(repository);
-            GameState game = controller.Get(gameId);
-            List<GameMove> moves = new List<GameMove>(game.Moves);
-            moves.Add(new GameMove() { MoveNotation = "..." });
-            game.Moves = moves;
-            controller.Put(game);
-
+      
             // Act
             GameState updatedGame = controller.Get(gameId);
+            List<GameMove> moves = new List<GameMove>(updatedGame.Moves);
+            moves.Add(move);
+            updatedGame.Moves = moves;
+            controller.Put(updatedGame);
+            updatedGame = controller.Get(gameId);
 
             // Assert
+            GameState game = new GameState();
+            game.RegisterMove(move);
+            Assert.AreEqual(game.GameStateNotation, updatedGame.GameStateNotation);
         }
     }
 }

@@ -13,6 +13,6 @@ namespace ChessService.Models
         Guid UserUpdate(Users user);
         IEnumerable<Users> GetUsers();
         Users GetUser(Guid UserId);
-        Users GetUser(string login);
+        Users GetUser(string login, string password);
     }
 }

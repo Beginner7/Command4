@@ -25,9 +25,9 @@ namespace ChessService.Controllers
         }
 
         // GET api/users?login=ololoshka
-        public Users Get(string login)
+        public Users Get(string login, string password)
         {
-            return repository.GetUser(login);
+            return repository.GetUser(login,password);
         }
 
         // GET api/users?userId=C601A3DA-69D9-4301-BA78-8406D1C8BA2B

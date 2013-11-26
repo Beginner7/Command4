@@ -60,7 +60,7 @@ namespace ChessService.Tests.Controllers {
 
             // Act
 
-            Users result = controller.Get("username@milov7.ru");
+            Users result = controller.Get("username@milov7.ru","123456");
 
             // Assert
             Assert.IsNotNull(result);
