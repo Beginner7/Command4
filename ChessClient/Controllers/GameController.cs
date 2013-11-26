@@ -9,7 +9,9 @@ using Common;
 
 namespace ChessClient.Controllers {
     public class GameController : Controller {
+        // GameRepository gamerepository = new GameRepository("name","baseurl");
         readonly IDataService repository;
+
         public GameController(IDataService repository) {
             this.repository = repository;
         }
@@ -18,32 +20,29 @@ namespace ChessClient.Controllers {
         // GET: /Game/
         [HttpGet]
         public ActionResult Index() {
-            GameState gameState = new GameState();
-            gameState.GameId = Guid.NewGuid();
-            GameModel gameModels = new GameModel(gameState);
-            return View("Game", gameModels);
 
-            /*
             RepositoryResult<IEnumerable<GameState>> result = repository.Games.GetGames();
-            return View("GameList", result.Value);
-             */ 
+            if(result.IsSuccessStatusCode) {
+                return View("GameList", result.Value);
+            } else {
+                return View("GameList", result.Value);
+            }
+        }
 
+        [HttpGet]
+        public ActionResult ShowGame(Guid gameId) {
+            RepositoryResult<GameState> result = repository.Games.GetGame(gameId);
+            GameModel gamemodel = new GameModel(result.Value);
+            if(result.IsSuccessStatusCode) {
+                return View("Game", gamemodel);
+            }
+            return View("Game", gamemodel);
+            //   repository.Games.RegisterMove(
         }
 
         [HttpPost]
-        public ActionResult Index(GameModel gameModels) {
-            //TODO get gamestate from service // gameState = gamestate from service 
-         //   gameModels.MakeMove(gameModels.move);
-         //   gameModels.Parse(gameModels.gameState.GameStateNotation);
-
-            return View("Game",gameModels);
-  
-         //   repository.Games.RegisterMove(
+        public ActionResult ShowGame(Guid gameId, [System.Web.Http.FromBody] string move) {
+            return null;
         }
-
-
-
-
-
     }
 }

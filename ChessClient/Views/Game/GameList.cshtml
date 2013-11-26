@@ -6,12 +6,12 @@
 
 @{
     <ul>
-    @foreach(Common.GameState gamestate in Model) {
-        <li>
-            <a href="@gamestate.GameId">@gamestate.GameStateNotation</a>
+        @foreach(Common.GameState gamestate in Model) {
+            <li>
+                @Html.ActionLink(@gamestate.GameStateNotation, "ShowGame", new { gameId = @gamestate.GameId })
 
-        </li>   
-    }
+            </li>   
+        }
     </ul>
 }
 
