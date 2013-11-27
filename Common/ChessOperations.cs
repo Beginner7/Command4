@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Common {
     public enum FigureColor { White, Black, Empty }
     public enum FigureType { Pawn, Rook, Knight, Bishop, Queen, King, Empty }
+    public enum ResultMessage { GoodMove, NotHaveFigure, NotTheirFigure }
     public struct Figure {
         public FigureColor Color;
         public FigureType Type;
@@ -262,7 +263,11 @@ namespace Common {
 
         }
 
-
+        public static Enum MoveCheckCells(int FromX, int FromY, int ToX, int ToY, Figure[,] cells) {
+            if(cells[FromX, FromY].Type == FigureType.Empty) return ResultMessage.NotHaveFigure;
+            // else if(cells[FromX, FromY].Color != userColor) return ResultMessage.NotTheirFigure;
+            else return ResultMessage.GoodMove;
+        }
 
     }
 }

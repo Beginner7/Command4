@@ -85,5 +85,27 @@ namespace ChessService.Tests.Controllers {
             game.RegisterMove(move);
             Assert.AreEqual(game.GameStateNotation, updatedGame.GameStateNotation);
         }
+
+        [TestMethod]
+        public void MoveCheckCells() {
+            // Arrange
+            GamesController controller = new GamesController(repository);
+            GameState game = controller.Get(gameId);
+            List<GameMove> moves = new List<GameMove>(game.Moves);
+
+            Figure[,] cells = new Figure[8, 8];
+            ChessOperations.Parse(game.GameStateNotation);
+
+            // Act
+           
+            Enum result1 = ChessOperations.MoveCheckCells(0, 2, 0, 4, cells);
+            Enum result2 = ChessOperations.MoveCheckCells(0, 4, 0, 5, cells);
+            //Enum result3 = ChessOperations.MoveCheckCells(0, 7, 0, 5, cells);
+
+            // Assert
+            Assert.AreEqual(ResultMessage.GoodMove, result1);
+            Assert.AreEqual(ResultMessage.NotHaveFigure, result2);
+            //Assert.AreEqual(result3, ResultMessage.NotTheirFigure);
+        }
     }
 }
