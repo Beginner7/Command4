@@ -22,7 +22,7 @@ namespace ChessClient.Models {
 
         public string GetFigureImage(int x, int y) {
             if(cells[x, y].Type != FigureType.Empty) {
-                string str = "images/" + cells[x, y].Type + cells[x, y].Color + ".png";
+                string str = "../images/" + cells[x, y].Type + cells[x, y].Color + ".png";
                 return str;
             } else {
                 string str = "";

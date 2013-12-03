@@ -5,7 +5,16 @@
 
 <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
 <script src="/Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script>
+    $(function Move(){
+        alert('1');
+        $('#a8').click(function(){           
 
+            var url = @Url.Action("ShowGame", "Game", new { gameId = @Model.gameState.GameId, move = "e2 e4" })
+    });
+    });
+
+</script>
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
@@ -43,7 +52,9 @@
                </tr>
                <tr>
                    <td class="positionY">8</td>
-                   <td id="a8" class="whiteCell"><img src="@Model.GetFigureImage(0, 0)"/></td>
+                   <td id="a8" onclick="Move()" class="whiteCell"><img src="@Model.GetFigureImage(0, 0)"/>
+
+                   </td>
                    <td id="b8" class="blackCell"><img src="@Model.GetFigureImage(0, 1)"/></td>
                    <td id="c8" class="whiteCell"><img src="@Model.GetFigureImage(0, 2)" /></td>
                    <td id="d8" class="blackCell"><img src="@Model.GetFigureImage(0, 3)" /></td>

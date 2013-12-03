@@ -22,6 +22,7 @@ namespace ChessClient.DataService {
             List<GameMove> moves = new List<GameMove>(gameState.Value.Moves);
             moves.Add(move);
             gameState.Value.Moves = moves;
+            gameState.Value.RegisterMove(move);
             return Update(gameState.Value);
         }
         public RepositoryResult<IEnumerable<GameState>> GetGames() {

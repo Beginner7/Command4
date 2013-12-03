@@ -37,12 +37,21 @@ namespace ChessClient.Controllers {
                 return View("Game", gamemodel);
             }
             return View("Game", gamemodel);
-            //   repository.Games.RegisterMove(
         }
 
         [HttpPost]
         public ActionResult ShowGame(Guid gameId, [System.Web.Http.FromBody] string move) {
-            return null;
+            GameMove gameMove = new GameMove();
+            gameMove.MoveNotation = move;
+            RepositoryResult resultMoveRegister = repository.Games.RegisterMove(gameId, gameMove);
+            if(!resultMoveRegister.IsSuccessStatusCode)
+                throw new InvalidOperationException(resultMoveRegister.Exception.GetBaseException().Message);
+            RepositoryResult<GameState> resultGameLoad = repository.Games.GetGame(gameId);
+            GameModel gamemodel = new GameModel(resultGameLoad.Value);
+            if(resultMoveRegister.IsSuccessStatusCode) {
+                return View("Game", gamemodel);
+            }
+            return View("Game", gamemodel);
         }
     }
 }
