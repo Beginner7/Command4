@@ -166,6 +166,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChessDesk.cs" />
+    <Compile Include="Models\Figure.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GamesRepository.cs" />
     <Compile Include="Models\IGamesRepository.cs" />
     <Compile Include="Models\IUsersRepository.cs" />
