@@ -87,6 +87,29 @@ namespace ChessService.Tests.Controllers {
         }
 
         [TestMethod]
+        public void CheckColorOfCurrentPlayer() {
+            // Arrange
+            GamesController controller = new GamesController(repository);
+            GameState game = controller.Get(gameId);
+            List<GameMove> moves1 = new List<GameMove>(game.Moves);   // for 0 moves
+            List<GameMove> moves2 = new List<GameMove>(game.Moves);   // for 1 move 
+            List<GameMove> moves3 = new List<GameMove>(game.Moves);   // for 2 moves  
+
+            GameMove move = new GameMove() { MoveNotation = "a2 a4" };
+            moves2.Add(move); moves3.Add(move); moves3.Add(move);
+
+            // Act
+            FigureColor result1 = ChessOperations.CheckColorOfCurrentPlayer(moves1);
+            FigureColor result2 = ChessOperations.CheckColorOfCurrentPlayer(moves2);
+            FigureColor result3 = ChessOperations.CheckColorOfCurrentPlayer(moves3);
+
+            // Assert
+            Assert.AreEqual(FigureColor.White, result1);
+            Assert.AreEqual(FigureColor.Black, result2);
+            Assert.AreEqual(FigureColor.White, result3);
+        }
+
+        [TestMethod]
         public void MoveCheckCells() {
             // Arrange
             GamesController controller = new GamesController(repository);
@@ -98,14 +121,15 @@ namespace ChessService.Tests.Controllers {
 
             // Act
            
-            Enum result1 = ChessOperations.MoveCheckCells(0, 2, 0, 4, cells);
-            Enum result2 = ChessOperations.MoveCheckCells(0, 4, 0, 5, cells);
-            //Enum result3 = ChessOperations.MoveCheckCells(0, 7, 0, 5, cells);
+            Enum result1 = ChessOperations.MoveCheckCells(0, 2, 0, 4, cells, FigureColor.White);
+            //Enum result2 = ChessOperations.MoveCheckCells(0, 4, 0, 5, cells, FigureColor.White);
+
+            Enum result3 = ChessOperations.MoveCheckCells(0, 7, 0, 5, cells, FigureColor.Black);
 
             // Assert
             Assert.AreEqual(ResultMessage.GoodMove, result1);
-            Assert.AreEqual(ResultMessage.NotHaveFigure, result2);
-            //Assert.AreEqual(result3, ResultMessage.NotTheirFigure);
+            //Assert.AreEqual(ResultMessage.NotHaveFigure, result2);
+            Assert.AreEqual(ResultMessage.NotYourFigure, result3);
         }
     }
 }

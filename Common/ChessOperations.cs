@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Common {
     public enum FigureColor { White, Black, Empty }
     public enum FigureType { Pawn, Rook, Knight, Bishop, Queen, King, Empty }
-    public enum ResultMessage { GoodMove, NotHaveFigure, NotTheirFigure }
+    public enum ResultMessage { GoodMove, NotHaveFigure, NotYourFigure }
     public struct Figure {
         public FigureColor Color;
         public FigureType Type;
@@ -263,9 +263,14 @@ namespace Common {
 
         }
 
-        public static Enum MoveCheckCells(int FromX, int FromY, int ToX, int ToY, Figure[,] cells) {
+        public static FigureColor CheckColorOfCurrentPlayer(List<GameMove> moves){
+            if(moves.Count % 2 == 1) return FigureColor.Black;
+            else return FigureColor.White;
+        }
+
+        public static Enum MoveCheckCells(int FromX, int FromY, int ToX, int ToY, Figure[,] cells, FigureColor colorOfCurrentPlayer) {
             if(cells[FromX, FromY].Type == FigureType.Empty) return ResultMessage.NotHaveFigure;
-            // else if(cells[FromX, FromY].Color != userColor) return ResultMessage.NotTheirFigure;
+            else if(cells[FromX, FromY].Color != colorOfCurrentPlayer) return ResultMessage.NotYourFigure;
             else return ResultMessage.GoodMove;
         }
 
