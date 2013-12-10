@@ -8,36 +8,36 @@ using Common;
 
 namespace ChessService.Models {
     public class GamesRepository : IGamesRepository {
-        Dictionary<Guid, GameState> games = new Dictionary<Guid, GameState>();
+        Dictionary<Guid, GameFiguresList> games = new Dictionary<Guid, GameFiguresList>();
 
         public Guid GameRequest(Guid gamer) {
-            GameState gameState = new GameState();
+            GameFiguresList gameState = new GameFiguresList();
             Guid gameId = Guid.NewGuid();
             games[gameId] = gameState;
             return gameId;
         }
-        
+
         public Guid StartGame(GameState newGame) {
-            games.Add(newGame.GameId, newGame);
+            games.Add(newGame.GameId, new GameFiguresList(newGame));
             return newGame.GameId;
         }
 
         public string RegisterMove(Guid gameId, GameMove move) {
-            GameState gameState;
+            GameFiguresList gameState;
             if(!games.TryGetValue(gameId, out gameState)) {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            gameState.RegisterMove(move);
-            return gameState.GameStateNotation;
+            gameState.ProcessMove(move);
+            return gameState.GameState.GameStateNotation;
         }
 
         public IEnumerable<GameState> GetGames() {
-            return games.Values;
+            return games.Values.Select(g => g.GameState);
         }
         public GameState GetGame(Guid gameId) {
-            GameState notation = null;
-            games.TryGetValue(gameId, out notation);
-            return notation;
+            GameFiguresList game = null;
+            games.TryGetValue(gameId, out game);
+            return game.GameState;
         }
     }
 }

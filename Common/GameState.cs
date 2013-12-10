@@ -29,17 +29,17 @@ namespace Common {
             currentMoves.Add(move);
             Moves = currentMoves;
 
-            Figure[,] cells = ChessOperations.Parse(GameStateNotation);
+            //Figure[,] cells = ChessOperations.Parse(GameStateNotation);
 
-            ChessOperations.MakeMove(move.MoveNotation, cells);
+            //ChessOperations.MakeMove(move.MoveNotation, cells);
 
-            GameStateNotation = ChessOperations.CreateStateByModel(cells);
+            //ChessOperations.CreateStateByModel(cells);
         }
     }
 }
 
+ 
 
+        
 
-
-
-
+        
