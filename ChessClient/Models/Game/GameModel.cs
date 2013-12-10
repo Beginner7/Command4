@@ -10,81 +10,149 @@ namespace ChessClient.Models {
         public FigureType Type;
     }
     public class GameModel {
-        public Figure[,] cells;
-        public GameState gameState;
-        struct CoordinateXY {
+        public struct CoordinateXY {
             public int x;
             public int y;
         }
+        public Figure[,] cells;
+        public string[,] cellsCss;
+        public GameState gameState;
+        public bool CurrentPlayerWhite;
+        public string move { get; set; }
+        public List<CoordinateXY> CurrentMoves;
+        public CoordinateXY CurrentFigure;
 
         public GameModel(GameState gamestate) {
 
             this.gameState = gamestate;
             this.cells = Parse(gameState.GameStateNotation);
+            this.CurrentMoves = new List<CoordinateXY>();
+            if(gameState.Moves.Count() % 2 == 0) {
+                this.CurrentPlayerWhite = false;
+            } else {
+                this.CurrentPlayerWhite = true;
+        }
+            CssClass();
+        }
+
+        public void CssClass() {
+            this.cellsCss = new string[8, 8];
+            int tempcolor = 1;
+            CoordinateXY tempXY;
+            for(int i = 0; i < 8; i++) {
+                for(int j = 0; j < 8; j++) {
+                    if(tempcolor % 2 == 0) {
+                        cellsCss[i, j] = "blackCell";
+                    } else {
+                        cellsCss[i, j] = "whiteCell";
+                    }
+                    tempXY.x = i; tempXY.y = j;
+                    foreach(CoordinateXY temp in CurrentMoves) {
+                        if(temp.Equals(tempXY)) {
+                            cellsCss[i, j] = "currentCell";
+                            break;
+                        }
+                    }
+                    if(j != 7) tempcolor++;
+
+
+                }
+
+            }
+        }
+
+        public bool IsWhiteFigure(int x, int y) {
+            if(cells[x, y].Color != FigureColor.White) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public bool IsBlackFigure(int x, int y) {
+            if(cells[x, y].Color != FigureColor.Black) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public string GetFigureImage(int x, int y) {
             if(cells[x, y].Type != FigureType.Empty) {
-                string str = "images/" + cells[x, y].Type + cells[x, y].Color + ".png";
+                string str = "" + cells[x, y].Type + cells[x, y].Color;
                 return str;
             } else {
-                string str = "";
+                string str = "NoneText";
                 return str;
             }
         }
 
-        public string move { get; set; }
-
-        List<CoordinateXY> pawnBlackMove(int x, int y) {
+        public List<CoordinateXY> pawnBlackMove(int x, int y) {
             List<CoordinateXY> list = new List<CoordinateXY>();
             CoordinateXY coordinateXY;
-            if(cells[x + 1, y + 1].Color == FigureColor.Black) {
+            if((x + 1) <= 7 && (y + 1) <= 7) {
+                if(cells[x + 1, y + 1].Color == FigureColor.White) {
                 coordinateXY.x = x + 1;
                 coordinateXY.y = y + 1;
                 list.Add(coordinateXY);
             }
-            if(cells[x + 1, y - 1].Color == FigureColor.Black) {
+            }
+            if((x + 1) <= 7 && (y - 1) >= 0) {
+                if(cells[x + 1, y - 1].Color == FigureColor.White) {
                 coordinateXY.x = x + 1;
                 coordinateXY.y = y - 1;
                 list.Add(coordinateXY);
             }
-            if(x == 1) {
+            }
+            if((x + 1) <= 7) {
+                if(cells[x + 1, y].Type == FigureType.Empty) {
+                    coordinateXY.x = x + 1;
+                    coordinateXY.y = y;
+                    list.Add(coordinateXY);
+                    if(x == 1 && cells[x + 2, y].Type == FigureType.Empty) {
                 coordinateXY.x = x + 2;
                 coordinateXY.y = y;
                 list.Add(coordinateXY);
             }
-            coordinateXY.x = x + 1;
-            coordinateXY.y = y;
-            list.Add(coordinateXY);
+                }
+            }
             return list;
 
         }
 
-        List<CoordinateXY> pawnWhiteMove(int x, int y) {
+        public List<CoordinateXY> pawnWhiteMove(int x, int y) {
             List<CoordinateXY> list = new List<CoordinateXY>();
             CoordinateXY coordinateXY;
-            if(cells[x + 1, y + 1].Color == FigureColor.White) {
+            if((x - 1) >= 0 && (y + 1) <= 7) {
+                if(cells[x - 1, y + 1].Color == FigureColor.Black) {
                 coordinateXY.x = x - 1;
                 coordinateXY.y = y + 1;
                 list.Add(coordinateXY);
             }
-            if(cells[x + 1, y - 1].Color == FigureColor.White) {
+            }
+            if((x - 1) >= 0 && (y - 1) >= 0) {
+                if(cells[x - 1, y - 1].Color == FigureColor.Black) {
                 coordinateXY.x = x - 1;
                 coordinateXY.y = y - 1;
                 list.Add(coordinateXY);
             }
-            if(x == 1) {
+            }
+            if((x - 1) >= 0) {
+                if(cells[x - 1, y].Type == FigureType.Empty) {
+                    coordinateXY.x = x - 1;
+                    coordinateXY.y = y;
+                    list.Add(coordinateXY);
+                    if(x == 6 && cells[x - 2, y].Type == FigureType.Empty) {
                 coordinateXY.x = x - 2;
                 coordinateXY.y = y;
                 list.Add(coordinateXY);
             }
-            coordinateXY.x = x - 1;
-            coordinateXY.y = y;
-            list.Add(coordinateXY);
+                }
+            }
             return list;
         }
 
-        List<CoordinateXY> knightMove(int x, int y) {
+        public List<CoordinateXY> knightMove(int x, int y) {
             FigureColor color = cells[x, y].Color;
             CoordinateXY[] travel = new CoordinateXY[]{
                 new CoordinateXY{x = -2, y = -1},
@@ -97,11 +165,14 @@ namespace ChessClient.Models {
                 new CoordinateXY{x = 2, y = 1}
             };
             List<CoordinateXY> list = new List<CoordinateXY>();
+            CoordinateXY coordinateXY;
             foreach(CoordinateXY elem in travel) {
                 int xtemp = x + elem.x;
                 int ytemp = y + elem.y;
                 if(xtemp >= 0 && xtemp <= 7 && ytemp >= 0 && ytemp <= 7 && cells[xtemp, ytemp].Color != color) {
-                    list.Add(elem);
+                    coordinateXY.x = xtemp;
+                    coordinateXY.y = ytemp;
+                    list.Add(coordinateXY);
                 }
 
             }
@@ -109,7 +180,7 @@ namespace ChessClient.Models {
         }
 
 
-        List<CoordinateXY> kingMove(int x, int y) { //checkmate
+        public List<CoordinateXY> kingMove(int x, int y) { //checkmate
             FigureColor color = cells[x, y].Color;
             CoordinateXY[] travel = new CoordinateXY[]{
                  new CoordinateXY{x = -1, y = 0},
@@ -121,19 +192,23 @@ namespace ChessClient.Models {
                  new CoordinateXY{x = 1, y = 0},
                  new CoordinateXY{x = 1, y = -1}
             };
+            CoordinateXY coordinateXY;
             List<CoordinateXY> list = new List<CoordinateXY>();
             foreach(CoordinateXY elem in travel) {
                 int xtemp = x + elem.x;
                 int ytemp = y + elem.y;
                 if(xtemp >= 0 && xtemp <= 7 && ytemp >= 0 && ytemp <= 7 && cells[xtemp, ytemp].Color != color) {
-                    list.Add(elem);
+                    coordinateXY.x = xtemp;
+                    coordinateXY.y = ytemp;
+                    list.Add(coordinateXY);
                 }
 
             }
             return list;
         }
 
-        List<CoordinateXY> rookMove(int x, int y) {
+
+        public List<CoordinateXY> rookMove(int x, int y) {
             FigureColor color = cells[x, y].Color;
             List<CoordinateXY> list = new List<CoordinateXY>();
             CoordinateXY travel;
@@ -205,7 +280,7 @@ namespace ChessClient.Models {
         }
 
 
-        List<CoordinateXY> bishopMove(int x, int y) {
+        public List<CoordinateXY> bishopMove(int x, int y) {
             FigureColor color = cells[x, y].Color;
             List<CoordinateXY> list = new List<CoordinateXY>();
             CoordinateXY travel;
@@ -263,7 +338,7 @@ namespace ChessClient.Models {
             };
             i = x - 1;
             j = y + 1;
-            while(i <= 0 && j >= 7) {
+            while(i >= 0 && j <= 7) {
                 if(cells[i, j].Color == color) {
                     break;
                 }
@@ -282,7 +357,7 @@ namespace ChessClient.Models {
             return list;
         }
 
-        List<CoordinateXY> queenMove(int x, int y) {
+        public List<CoordinateXY> queenMove(int x, int y) {
             FigureColor color = cells[x, y].Color;
             List<CoordinateXY> list = new List<CoordinateXY>();
             CoordinateXY travel;
@@ -404,7 +479,7 @@ namespace ChessClient.Models {
             };
             i = x - 1;
             j = y + 1;
-            while(i <= 0 && j >= 7) {
+            while(i >= 0 && j <= 7) {
                 if(cells[i, j].Color == color) {
                     break;
                 }
@@ -523,7 +598,7 @@ namespace ChessClient.Models {
                         break;
                     }
 
-            }
+    }
             return temp;
         }
     }

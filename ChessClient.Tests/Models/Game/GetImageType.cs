@@ -19,7 +19,7 @@ namespace ChessClient.Tests
         {
             GameState state = new GameState();
             GameModel m = new GameModel(state);
-            string ImageFile="images/pawnblack.png";
+            string ImageFile="pawnblack";
             string GetImage = m.GetFigureImage(1, 3).ToLower();
             Assert.AreEqual(GetImage, ImageFile);
         }
