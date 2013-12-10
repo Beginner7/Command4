@@ -7,16 +7,16 @@ using ChessClient.Models;
 namespace ChessClient.DataService {
     public interface IDataService {
         IGamesRepository Games { get; }
-        IGamesRepository User { get; }
+        IUsersRepository User { get; }
     }
 
     public class DataService : IDataService {
         public IGamesRepository Games { get; private set; }
-        public IGamesRepository User { get; private set; }
+        public IUsersRepository User { get; private set; }
 
         public DataService(string serviceUrl) {
             Games = new GameRepository("games", serviceUrl);
-            User = new GameRepository("user", serviceUrl);
+            User = new UserRepository("user", serviceUrl);
         }
 
     }

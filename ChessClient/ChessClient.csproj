@@ -328,6 +328,8 @@
     <Content Include="Views\Game\Game.cshtml" />
     <Content Include="Views\Game\InputMove.cshtml" />
     <Content Include="Views\Game\GameList.cshtml" />
+    <Content Include="Views\Account\Registration.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

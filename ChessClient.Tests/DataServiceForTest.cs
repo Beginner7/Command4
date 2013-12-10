@@ -16,7 +16,7 @@ namespace ChessClient.Tests {
         }
 
 
-        public IGamesRepository User
+        public IUsersRepository User
         {get ; private set; }
     }
 

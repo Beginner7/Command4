@@ -10,12 +10,12 @@ namespace ChessService.Models
 {
     public class UsersRepository : IUsersRepository
     {
-        Dictionary<Guid, Users> users = new Dictionary<Guid, Users>();
+        Dictionary<Guid, User> users = new Dictionary<Guid, User>();
 
       
-        public Guid UserUpdate(Users user)
+        public Guid UserUpdate(User user)
         {
-            Users currentUser;
+            User currentUser;
 
             if (!users.TryGetValue(user.userId, out currentUser))
             {
@@ -27,30 +27,30 @@ namespace ChessService.Models
             return user.userId;
         }
 
-        public Guid UserRegister(Users user)
+        public Guid UserRegister(User user)
         {
             users.Add(user.userId, user);
             return user.userId;
         }
 
-        public IEnumerable<Users> GetUsers()
+        public IEnumerable<User> GetUsers()
         {
             return users.Values;
         }
-        public Users GetUser(Guid userId)
+        public User GetUser(Guid userId)
         {
-            Users notation = null;
+            User notation = null;
             users.TryGetValue(userId, out notation);
             return notation;
         }
 
-        public Users GetUser(string login, string password)
+        public User GetUser(string login, string password)
         {
-            Users user = new Users();
+            User user = new User();
           
             Guid userId = new Guid();
 
-            foreach(Users current_user in users.Values){
+            foreach(User current_user in users.Values){
                 if (current_user.Login==login && current_user.Password==password) userId=current_user.userId;
             }
 

@@ -1,0 +1,17 @@
+﻿@model ChessClient.Models.AccountModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Регистрация:</h2>
+<div>
+    @using(Html.BeginForm()) { 
+        @Html.Label("Логин:") 
+        @Html.TextBox("3123")           
+        @Html.Label("Пароль:") 
+        @Html.Password("3123")
+        @Html.Label("Подтверждение пароля:") 
+        @Html.Password("3123")
+        <br><input type="submit" value="Регистрация">                         
+    }
+</div>

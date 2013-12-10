@@ -9,10 +9,10 @@ namespace ChessService.Models
 {
     public interface IUsersRepository
     {
-        Guid UserRegister(Users user);
-        Guid UserUpdate(Users user);
-        IEnumerable<Users> GetUsers();
-        Users GetUser(Guid UserId);
-        Users GetUser(string login, string password);
+        Guid UserRegister(User user);
+        Guid UserUpdate(User user);
+        IEnumerable<User> GetUsers();
+        User GetUser(Guid UserId);
+        User GetUser(string login, string password);
     }
 }

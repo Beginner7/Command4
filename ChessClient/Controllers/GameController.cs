@@ -43,14 +43,13 @@ namespace ChessClient.Controllers {
         [HttpGet]
         public ActionResult Index() {
 
-            //RepositoryResult<IEnumerable<GameState>> result = repository.Games.GetGames();
-            //if(result.IsSuccessStatusCode) {
-            //    return View("GameList", result.Value);
-            //} else {
-            //    throw new InvalidOperationException(result.Exception.GetBaseException().Message);
-            //}
-            GameState gamestate = new GameState();
-            return View("GameList", gamestate);
+            RepositoryResult<IEnumerable<GameState>> result = repository.Games.GetGames();
+            if(result.IsSuccessStatusCode) {
+                return View("GameList", result.Value);
+            } else {
+                throw new InvalidOperationException(result.Exception.GetBaseException().Message);
+            }
+
         }
 
         [HttpGet]

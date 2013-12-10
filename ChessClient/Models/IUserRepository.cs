@@ -7,12 +7,12 @@ using Common;
 
 namespace ChessClient.Models
 {
-    public interface IUserRepository
+    public interface IUsersRepository
     {
-        RepositoryResult<Users> AddUser(Users user);
-        RepositoryResult EditUser(Users user);
-        RepositoryResult<IEnumerable<Users>> GetUsers();
-        RepositoryResult<Users> GetUser(Guid userId);
+        RepositoryResult<User> AddUser(User user);
+        RepositoryResult EditUser(User user);
+        RepositoryResult<IEnumerable<User>> GetUsers();
+        RepositoryResult<User> GetUser(Guid userId);
     
     }
 }

@@ -15,6 +15,9 @@ namespace ChessClient {
             if(serviceType == typeof(GameController)) {
                 return new GameController(respository);
             } else {
+                if(serviceType == typeof(AccountController)) {
+                    return new AccountController(respository);
+                }
                 return null;
             }
         }

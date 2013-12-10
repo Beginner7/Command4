@@ -5,9 +5,9 @@ using System.Web;
 using Common;
 
 namespace ChessService.Models {
-    enum GameState {
+    //enum GameState {
 
-    }
+    //}
     public abstract class Figure : ICloneable {
         int x;
         int y;

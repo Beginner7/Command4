@@ -9,8 +9,8 @@ namespace ChessService.Models {
         public Game() {
             figures = new List<Figure>();
         }
-        public GameState ProcessMove(int xFrom, int yFrom, int xTo, int yTo) {
-            List<Figure> figuresCopy;
-        }
+        //public GameState ProcessMove(int xFrom, int yFrom, int xTo, int yTo) {
+        //    List<Figure> figuresCopy;
+        //}
     }
 }
