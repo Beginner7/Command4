@@ -41,17 +41,6 @@ namespace ChessClient.Controllers {
             }
         }
 
-        [HttpGet]
-        public ActionResult ShowGame(Guid gameId) {
-            RepositoryResult<GameState> result = repository.Games.GetGame(gameId);
-            GameModel gamemodel = new GameModel(result.Value);
-            if(result.IsSuccessStatusCode) {
-            return View("Game", gamemodel);
-        }
-                return View("Game", gamemodel);
-            //   repository.Games.RegisterMove(
-        }
-
         [HttpPost]
         public ActionResult ShowGame(Guid gameId, [System.Web.Http.FromBody] string move) {
             return null;
