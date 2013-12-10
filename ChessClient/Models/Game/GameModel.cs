@@ -5,7 +5,10 @@ using System.Web;
 using Common;
 
 namespace ChessClient.Models {
-
+    public struct Figure {
+        public FigureColor Color;
+        public FigureType Type;
+    }
     public class GameModel {
         public Figure[,] cells;
         public GameState gameState;
@@ -17,7 +20,7 @@ namespace ChessClient.Models {
         public GameModel(GameState gamestate) {
 
             this.gameState = gamestate;
-            this.cells=ChessOperations.Parse(gameState.GameStateNotation);
+            this.cells = Parse(gameState.GameStateNotation);
         }
 
         public string GetFigureImage(int x, int y) {
@@ -32,7 +35,7 @@ namespace ChessClient.Models {
 
         public string move { get; set; }
 
-        List<CoordinateXY> pawnBlackMove(int x, int y) { 
+        List<CoordinateXY> pawnBlackMove(int x, int y) {
             List<CoordinateXY> list = new List<CoordinateXY>();
             CoordinateXY coordinateXY;
             if(cells[x + 1, y + 1].Color == FigureColor.Black) {
@@ -97,7 +100,7 @@ namespace ChessClient.Models {
             foreach(CoordinateXY elem in travel) {
                 int xtemp = x + elem.x;
                 int ytemp = y + elem.y;
-                if(xtemp >= 0 && xtemp <= 7 && ytemp >= 0 && ytemp <= 7 && cells[xtemp,ytemp].Color != color) {
+                if(xtemp >= 0 && xtemp <= 7 && ytemp >= 0 && ytemp <= 7 && cells[xtemp, ytemp].Color != color) {
                     list.Add(elem);
                 }
 
@@ -420,5 +423,108 @@ namespace ChessClient.Models {
             return list;
         }
 
+
+        public static Figure[,] Parse(string Notation) {
+            const char EOLN = ' ';
+            Figure[,] cells = new Figure[8, 8];
+            int counter = 0, rowNumber = 0, value = 0, index = 0;
+            char cursor = Notation[0];
+            bool result = false;
+            while(cursor != EOLN) {
+                if(cursor == '/') {
+                    counter++;
+                    cursor = Notation[counter];
+                    index = 0;
+                    rowNumber++;
+                    continue;
+                }
+                result = System.Int32.TryParse(cursor.ToString(), out value);
+                if(result) {
+                    for(int i = 1; i <= value; i++) {
+                        cells[rowNumber, index] = GetFigureType(cursor);
+                        index++;
+                    }
+                } else {
+                    cells[rowNumber, index] = GetFigureType(cursor);
+                    index++;
+                }
+                counter++;
+                cursor = Notation[counter];
+            }
+            return cells;
+        }
+        public static Figure GetFigureType(char code) {
+            Figure temp = new Figure();
+            switch(code) {
+                case 'P': {
+                        temp.Color = FigureColor.White;
+                        temp.Type = FigureType.Pawn;
+                        break;
+                    }
+                case 'R': {
+                        temp.Color = FigureColor.White;
+                        temp.Type = FigureType.Rook;
+                        break;
+                    }
+                case 'N': {
+                        temp.Color = FigureColor.White;
+                        temp.Type = FigureType.Knight;
+                        break;
+                    }
+                case 'B': {
+                        temp.Color = FigureColor.White;
+                        temp.Type = FigureType.Bishop;
+                        break;
+                    }
+                case 'K': {
+                        temp.Color = FigureColor.White;
+                        temp.Type = FigureType.King;
+                        break;
+                    }
+                case 'Q': {
+                        temp.Color = FigureColor.White;
+                        temp.Type = FigureType.Queen;
+                        break;
+                    }
+
+                case 'p': {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Pawn;
+                        break;
+                    }
+                case 'r': {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Rook;
+                        break;
+                    }
+                case 'n': {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Knight;
+                        break;
+                    }
+                case 'b': {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Bishop;
+                        break;
+                    }
+                case 'k': {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.King;
+                        break;
+                    }
+                case 'q': {
+                        temp.Color = FigureColor.Black;
+                        temp.Type = FigureType.Queen;
+                        break;
+                    }
+                default: {
+                        temp.Color = FigureColor.Empty;
+                        temp.Type = FigureType.Empty;
+                        break;
+                    }
+
+            }
+            return temp;
+        }
     }
 }

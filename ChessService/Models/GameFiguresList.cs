@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 
 namespace ChessService.Models {
-    public class Game {
+    public class GameFiguresList {
         readonly List<Figure> figures;
-        public Game() {
+        public GameFiguresList() {
             figures = new List<Figure>();
         }
-        public GameState ProcessMove(int xFrom, int yFrom, int xTo, int yTo) {
+        public CurrentGameResult ProcessMove(int xFrom, int yFrom, int xTo, int yTo) {
             List<Figure> figuresCopy;
+            return CurrentGameResult.Ok;
         }
     }
 }
