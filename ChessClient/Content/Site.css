@@ -760,7 +760,8 @@ tr.pager td {
 }
 
 
-    #tabledesk {
+    #ChessDesk {
+
     }
 
     .blackCell {
@@ -770,16 +771,31 @@ tr.pager td {
         width: 80px;
         max-width:80px;
         max-height: 80px;
+        border-collapse:separate;
+        border: 2px solid black;
 
     }
 
     .whiteCell {
-        background-color:sandybrown ;
+        background-color:sandybrown;
         padding: 0em 0em 0em 0em;
         height: 80px;
         width: 80px;
         max-width:80px;
         max-height: 80px;
+        border-collapse:separate;
+        border: 2px solid black;
+    }
+
+    .currentCell {
+        background-color:lightgreen;
+        padding: 0em 0em 0em 0em;
+        height: 80px;
+        width: 80px;
+        max-width:80px;
+        max-height: 80px;
+        border-collapse:separate;
+        border: 2px solid black;
     }
 
     .positionX {   
@@ -800,14 +816,244 @@ tr.pager td {
         width: 640px;    
     }
 
+a.KnightBlack
+{
+    background-image: url(../Images/knightblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.KnightWhite
+{
+    background-image: url(../Images/knightwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.RookBlack
+{
+    background-image: url(../Images/rookblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.RookWhite
+{
+    background-image: url(../Images/rookwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.BishopBlack
+{
+    background-image: url(../Images/bishopblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
-  
+a.BishopWhite
+{
+    background-image: url(../Images/bishopwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+a.QueenBlack
+{
+    background-image: url(../Images/queenblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+a.QueenWhite
+{
+    background-image: url(../Images/queenwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}  
     
+a.KingBlack
+{
+    background-image: url(../Images/kingblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.KingWhite
+{
+    background-image: url(../Images/kingwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.PawnBlack
+{
+    background-image: url(../Images/pawnblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+a.PawnWhite
+{
+    background-image: url(../Images/pawnwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
 
+div.KnightBlack
+{
+    background-image: url(../Images/knightblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.KnightWhite
+{
+    background-image: url(../Images/knightwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.RookBlack
+{
+    background-image: url(../Images/rookblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.RookWhite
+{
+    background-image: url(../Images/rookwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.BishopBlack
+{
+    background-image: url(../Images/bishopblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.BishopWhite
+{
+    background-image: url(../Images/bishopwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.QueenBlack
+{
+    background-image: url(../Images/queenblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.QueenWhite
+{
+    background-image: url(../Images/queenwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}  
+    
+div.KingBlack
+{
+    background-image: url(../Images/kingblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.KingWhite
+{
+    background-image: url(../Images/kingwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.PawnBlack
+{
+    background-image: url(../Images/pawnblack.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+div.PawnWhite
+{
+    background-image: url(../Images/pawnwhite.png);
+      display: block;
+     width: 80px;
+     height: 80px;
+     text-indent: -9999px;
+}
+
+a.NoneText
+{
+    visibility:hidden;
+}
+
+#ChessDeskCountainer
+{
+    float:left;
+    width: 704px;
+    height:693px;
+}
+
+#MoveCountainer
+{
+    float:right;
+    width:250px;
+    height:693px;
+}
+
+#MoveNotation
+{
+    border:solid 2px;
+    border-radius: 10px;
+    background-color:lightyellow;
+}

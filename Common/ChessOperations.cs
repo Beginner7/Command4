@@ -274,17 +274,5 @@ namespace Common {
             else return ResultMessage.GoodMove;
         }
 
-        public static void RegisterMove(GameMove move, GameState gameState) {
-            List<GameMove> currentMoves = new List<GameMove>(gameState.Moves);
-            currentMoves.Add(move);
-            gameState.Moves = currentMoves;
-
-            Figure[,] cells = ChessOperations.Parse(gameState.GameStateNotation);
-
-            ChessOperations.MakeMove(move.MoveNotation, cells);
-
-            gameState.GameStateNotation = ChessOperations.CreateStateByModel(cells);
-        }
-
     }
 }
