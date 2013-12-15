@@ -1,4 +1,20 @@
-﻿@model ChessClient.Models.LoginModel
+﻿@{
+    ViewBag.Title = "Log in";
+}
+
+<h2>Вход:</h2>
+<div>
+    @using(Html.BeginForm()) { 
+        @Html.Label("Логин:") 
+        @Html.TextBox("3123")           
+        @Html.Label("Пароль:") 
+        @Html.Password("3123")
+        <br><input type="submit" value="Войти">                         
+    }
+</div>
+
+
+@*@model ChessClient.Models.LoginModel
 
 @{
     ViewBag.Title = "Log in";
@@ -47,4 +63,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

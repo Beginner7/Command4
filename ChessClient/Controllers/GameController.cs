@@ -25,8 +25,9 @@ namespace ChessClient.Controllers {
             if(result.IsSuccessStatusCode) {
                 return View("GameList", result.Value);
             } else {
-                return View("GameList", result.Value);
+                throw new InvalidOperationException(result.Exception.GetBaseException().Message);
             }
+
         }
 
         [HttpGet]
@@ -34,10 +35,10 @@ namespace ChessClient.Controllers {
             RepositoryResult<GameState> result = repository.Games.GetGame(gameId);
             GameModel gamemodel = new GameModel(result.Value);
             if(result.IsSuccessStatusCode) {
-                return View("Game", gamemodel);
+                return View("GameList", result.Value);
+            } else {
+                return View("GameList", result.Value);
             }
-            return View("Game", gamemodel);
-            //   repository.Games.RegisterMove(
         }
 
         [HttpPost]

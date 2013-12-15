@@ -8,25 +8,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChessClient;
 using ChessClient.Controllers;
 using ChessClient.Models;
+using ChessClient.DataService;
+using Common;
 
-namespace ChessClient.Tests.Controllers
-{
+namespace ChessClient.Tests.Controllers {
     [TestClass]
-    class AccountControllerTest
-    {
+    class AccountControllerTest {
+        IDataService ds = new DataServiceForTest();
         [TestMethod]
-        public void VarificationLogAndPassword()
-        {
+        public void VerificationLogAndPassword() {
             //Arrange
-            AccountController controller = new AccountController();
-            LoginModel model = new LoginModel()
-            {                
-                UserName="",
-                Password="",
-                RememberMe = false             
+            AccountController controller = new AccountController(ds);
+            User model = new User() {
+                Login = "",
+                Name = "",
+                Password = ""
             };
             //Act
-             
+
 
         }
     }

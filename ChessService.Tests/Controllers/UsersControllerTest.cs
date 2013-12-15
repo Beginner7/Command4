@@ -16,7 +16,7 @@ namespace ChessService.Tests.Controllers {
 
         [TestInitialize]
         public void Init() {
-            userId = repository.UserRegister(new Users() { userId = Guid.NewGuid(), Login="username@milov7.ru", Name="ololosha", Password = "123456" });
+            userId = repository.UserRegister(new User() { userId = Guid.NewGuid(), Login="username@milov7.ru", Name="ololosha", Password = "123456" });
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace ChessService.Tests.Controllers {
             // Arrange
             UsersController controller = new UsersController(repository);
 
-            Users user = new Users();
+            User user = new User();
             user.Login = "username@milov7.ru";
             user.Password = "123456";
             user.Name = "ololosha";
@@ -40,7 +40,7 @@ namespace ChessService.Tests.Controllers {
             controller.Post(user);
 
             // Act
-            IEnumerable<Users> result = controller.Get();
+            IEnumerable<User> result = controller.Get();
 
             // Assert
             Assert.IsNotNull(result);
@@ -51,7 +51,7 @@ namespace ChessService.Tests.Controllers {
         public void GetUser() {
             // Arrange
             UsersController controller = new UsersController(repository);
-            Users user=new Users();
+            User user=new User();
             user.Login = "username@milov7.ru";
             user.Password = "123456";
             user.Name = "ololosha";
@@ -60,7 +60,7 @@ namespace ChessService.Tests.Controllers {
 
             // Act
 
-            Users result = controller.Get("username@milov7.ru","123456");
+            User result = controller.Get("username@milov7.ru","123456");
 
             // Assert
             Assert.IsNotNull(result);
@@ -73,7 +73,7 @@ namespace ChessService.Tests.Controllers {
         public void GetUserById() {
             // Arrange
             UsersController controller = new UsersController(repository);
-            Users user = new Users();
+            User user = new User();
             user.Login = "username@milov7.ru";
             user.Password = "123456";
             user.Name = "ololosha";
@@ -84,7 +84,7 @@ namespace ChessService.Tests.Controllers {
             // Act
 
             controller.Post(user);
-            Users result = controller.Get(current_guid);
+            User result = controller.Get(current_guid);
 
             // Assert
             Assert.IsNotNull(result);
@@ -98,7 +98,7 @@ namespace ChessService.Tests.Controllers {
         public void UserRegister() {
             // Arrange
             UsersController controller = new UsersController(repository);
-            Users user = new Users();
+            User user = new User();
             user.Login = "username@milov7.ru";
             user.Password = "123456";
             user.Name = "ololosha";
@@ -109,7 +109,7 @@ namespace ChessService.Tests.Controllers {
             // Act
 
             controller.Post(user);
-            Users result = controller.Get(current_guid);
+            User result = controller.Get(current_guid);
 
             // Assert
             Assert.IsNotNull(result);
@@ -123,7 +123,7 @@ namespace ChessService.Tests.Controllers {
         public void UserUpdate() {
             // Arrange
             UsersController controller = new UsersController(repository);
-            Users user = new Users();
+            User user = new User();
             user.Login = "username@milov7.ru";
             user.Password = "123456";
             user.Name = "ololosha";
@@ -140,7 +140,7 @@ namespace ChessService.Tests.Controllers {
 
             controller.Put(user);
 
-            Users result = controller.Get(current_guid);
+            User result = controller.Get(current_guid);
 
             // Assert
             Assert.IsNotNull(result);

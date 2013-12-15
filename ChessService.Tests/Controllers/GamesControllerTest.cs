@@ -120,6 +120,9 @@ namespace ChessService.Tests.Controllers {
             //Figure[,] cells = new Figure[8, 8];
             //ChessOperations.Parse(game.GameStateNotation);
 
+            //Figure[,] cells = new Figure[8, 8];
+            //ChessOperations.Parse(game.GameStateNotation);
+           
             //// Act
             //Enum result1 = ChessOperations.MoveCheckCells(0, 2, 0, 4, cells, FigureColor.White);
             ////Enum result2 = ChessOperations.MoveCheckCells(0, 4, 0, 5, cells, FigureColor.White);

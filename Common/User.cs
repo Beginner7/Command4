@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Common
 {
     [DataContract]
-    public class Users
+    public class User
     {
         [DataMember]
         public string Login { get; set; }
@@ -20,7 +20,7 @@ namespace Common
         public Guid userId { get; set; }
        
 
-        public Users()
+        public User()
         {
             
         }
