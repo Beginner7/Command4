@@ -29,6 +29,12 @@ namespace ChessService.Models {
             if(currentFigure == null)
                 throw new ArgumentException();
 
+            List<int[]> path = currentFigure.GeneratePath(coordinates[2],coordinates[3]);
+
+            foreach(var cell in path) {
+                //cheackFreeCell[0];
+            }
+
             List<Figure> figuresCopy;
             return CurrentGameResult.Ok;
         }
