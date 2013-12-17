@@ -16,7 +16,7 @@ namespace ChessClient.DataService {
 
         public DataService(string serviceUrl) {
             Games = new GameRepository("games", serviceUrl);
-            User = new UserRepository("user", serviceUrl);
+            User = new UserRepository("users", serviceUrl);
         }
 
     }

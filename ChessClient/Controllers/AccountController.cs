@@ -38,21 +38,35 @@ namespace ChessClient.Controllers {
         [HttpPost]
         public ActionResult Index(string login, string name, string password) {
             User user = new User();
+            user.Login = login;
+            user.Name = name;
             user.Password = password;
-            user.userId = new Guid();
+            user.userId = Guid.NewGuid();
             RepositoryResult<User> resultAdd = repository.User.AddUser(user);
             if(resultAdd.IsSuccessStatusCode) {
                 RepositoryResult<IEnumerable<User>> resultGet = repository.User.GetUsers();
                 if(resultGet.IsSuccessStatusCode) {
                     AccountModel accountModel = new AccountModel();
-                    View("Register", accountModel);
+                    return View("Register", accountModel);
                 } else {
                     throw new InvalidOperationException(resultGet.Exception.GetBaseException().Message);
                 }
             } else {
                 throw new InvalidOperationException(resultAdd.Exception.GetBaseException().Message);
             }
-            return View();
+        }
+
+        // GET: /Login/
+        [HttpGet]
+        public ActionResult Login() {
+            AccountModel accountModel = new AccountModel();
+            return View("Login", accountModel);
+        }
+
+        [HttpPost]
+        public ActionResult Login(string login, string password) {
+            AccountModel accountModel = new AccountModel();
+            return View("Login", accountModel);
         }
 
         // GET: /Account/Index
