@@ -1,5 +1,37 @@
-﻿@{
-    ViewBag.Title = "Registration";
+﻿@model ChessClient.Models.AccountModel
+@{
+    ViewBag.Title = "Register";
 }
 
-<h2>Registration</h2>
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+
+@using(Html.BeginForm("Index", "Account", new { login = Model.Login, name = Model.Name, password = Model.Password })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.Label("Логин: ")
+                @Html.TextBoxFor(m => m.Login);
+            </li>
+            <li>
+                @Html.Label("Имя: ")
+                @Html.TextBoxFor(m => m.Name)
+            </li>
+            <li>
+                @Html.Label("Пароль:")
+                @Html.PasswordFor(m => m.Password)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
