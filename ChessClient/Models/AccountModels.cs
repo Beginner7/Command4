@@ -8,10 +8,15 @@ using System.Web.Security;
 using Common;
 
 namespace ChessClient.Models {
-    public class AccountModel { 
-        public AccountModel(IEnumerable<User> users){
-            
+    public class AccountModel {
+      //  public IEnumerable<User> Users;
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+        public AccountModel(){
+           
         }
+
     
     }
     //public class UsersContext : DbContext {

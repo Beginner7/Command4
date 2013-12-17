@@ -1,14 +1,15 @@
-﻿@{
+﻿@model ChessClient.Models.AccountModel
+@{
     ViewBag.Title = "Log in";
 }
 
 <h2>Вход:</h2>
 <div>
-    @using(Html.BeginForm()) { 
+    @using(Html.BeginForm("Index", "Login", new { login = Model.Login, password = Model.Password })) { 
         @Html.Label("Логин:") 
-        @Html.TextBox("3123")           
+        @Html.TextBoxFor(m => m.Login)           
         @Html.Label("Пароль:") 
-        @Html.Password("3123")
+        @Html.PasswordFor(m => m.Password)
         <br><input type="submit" value="Войти">                         
     }
 </div>
