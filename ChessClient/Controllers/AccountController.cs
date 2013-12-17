@@ -32,6 +32,7 @@ namespace ChessClient.Controllers {
             //    throw new InvalidOperationException(result.Exception.GetBaseException().Message);
             //}
             AccountModel accountModel = new AccountModel();
+            RepositoryResult<IEnumerable<User>> result = repository.User.GetUsers();
             return View("Register", accountModel);
         }
         [HttpPost]

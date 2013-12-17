@@ -8,12 +8,17 @@ using Common;
 namespace ChessService.Models {
     public class GameFiguresList {
         readonly List<Figure> figures;
-        public GameState GameState { get; set; }
+        readonly GameState gameState;
+        public GameState GameState { 
+            get {
+                return gameState;
+            } }
         public GameFiguresList() {
             figures = new List<Figure>();
         }
         public GameFiguresList(GameState gameState) {
             figures = new List<Figure>();
+            this.gameState = gameState;
         }
         public CurrentGameResult ProcessMove(GameMove move) {
             int[] coordinates = new int[4];
