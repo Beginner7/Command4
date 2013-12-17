@@ -19,6 +19,7 @@ namespace ChessService.Models {
             set { x = value[0]; y = value[1]; }
         }
         public FigureColor Color { get { return color; } }
+        //public abstract string Notation { get; }
 
         public Figure(int x, int y, FigureColor color) {
             this.Coordinate[0] = x;
@@ -47,6 +48,9 @@ namespace ChessService.Models {
             return new Pawn(Coordinate[0], Coordinate[1], Color);
         }
 
+       /* public override string Notation {
+            get { return Color == FigureColor.Black ? "p" : "P"; }
+        }*/
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1], currentX, currentY = this.Coordinate[1];
             List<int[]> path = new List<int[]>();
