@@ -6,7 +6,9 @@ using Common;
 
 namespace ChessService.Models {
     public enum CurrentGameResult {
-        Ok
+        Ok,
+        BarrierInThePath,
+        YourFigureInCellTo
     }
     public abstract class Figure : ICloneable {
         int x;
