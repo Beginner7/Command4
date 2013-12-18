@@ -50,11 +50,11 @@ namespace ChessService.Models {
             for(int i = 0; i < 8; i++) {
                 for(int j = 0; j < 8; j++) {
                     if(GetFigureByCoordinate(i, j) != null) {
-                        //gameState.GameStateNotation += GetFigureByCoordinate(i, j).Notation;
+                        gameState.GameStateNotation += GetFigureByCoordinate(i, j).Notation;
                     }
                 }
             }
-            //gameState.GameStateNotation = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+            gameState.GameStateNotation = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
             List<Figure> figuresCopy;
             return CurrentGameResult.Ok;

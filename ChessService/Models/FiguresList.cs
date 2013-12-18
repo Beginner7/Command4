@@ -19,7 +19,7 @@ namespace ChessService.Models {
             set { x = value[0]; y = value[1]; }
         }
         public FigureColor Color { get { return color; } }
-        //public abstract string Notation { get; }
+        public abstract string Notation { get; }
 
         public Figure(int x, int y, FigureColor color) {
             this.Coordinate[0] = x;
@@ -48,9 +48,9 @@ namespace ChessService.Models {
             return new Pawn(Coordinate[0], Coordinate[1], Color);
         }
 
-       /* public override string Notation {
-            get { return Color == FigureColor.Black ? "p" : "P"; }
-        }*/
+        public override string Notation {
+            get { return Color == FigureColor.White ? "p" : "P"; }
+        }
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1], currentX, currentY = this.Coordinate[1];
             List<int[]> path = new List<int[]>();
@@ -84,7 +84,9 @@ namespace ChessService.Models {
         public override object Clone() {
             return new Rook(Coordinate[0], Coordinate[1], Color);
         }
-
+        public override string Notation {
+            get { return Color == FigureColor.White ? "r" : "R"; }
+        }
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1], currentX=this.Coordinate[0], currentY = this.Coordinate[1];
             List<int[]> path = new List<int[]>();
@@ -122,7 +124,9 @@ namespace ChessService.Models {
         public override object Clone() {
             return new Knight(Coordinate[0], Coordinate[1], Color);
         }
-
+        public override string Notation {
+            get { return Color == FigureColor.White ? "n" : "N"; }
+        }
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1];
             List<int[]> path = new List<int[]>();
@@ -142,6 +146,9 @@ namespace ChessService.Models {
         }
         public override object Clone() {
             return new Bishop(Coordinate[0], Coordinate[1], Color);
+        }
+        public override string Notation {
+            get { return Color == FigureColor.White ? "b" : "B"; }
         }
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1], currentX, currentY = this.Coordinate[1];
@@ -191,6 +198,9 @@ namespace ChessService.Models {
         public override object Clone() {
             return new King(Coordinate[0], Coordinate[1], Color);
         }
+        public override string Notation {
+            get { return Color == FigureColor.White ? "k" : "K"; }
+        }
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1], currentX=this.Coordinate[0], currentY = this.Coordinate[1];
             List<int[]> path = new List<int[]>();
@@ -216,7 +226,9 @@ namespace ChessService.Models {
         public override object Clone() {
             return new Queen(Coordinate[0], Coordinate[1], Color);
         }
-
+        public override string Notation {
+            get { return Color == FigureColor.White ? "q" : "Q"; }
+        }
         public override List<int[]> GeneratePath(int x, int y) {
             int moveX = x - this.Coordinate[0], moveY = y - this.Coordinate[1], currentX=this.Coordinate[0], currentY = this.Coordinate[1];
             List<int[]> path = new List<int[]>();
